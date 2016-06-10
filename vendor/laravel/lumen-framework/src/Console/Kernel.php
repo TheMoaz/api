@@ -5,9 +5,9 @@ namespace Laravel\Lumen\Console;
 use Exception;
 use Throwable;
 use RuntimeException;
+use Laravel\Lumen\Application;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Console\Application as Artisan;
-use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\Console\Kernel as KernelContract;
 use Symfony\Component\Debug\Exception\FatalThrowableError;
 
@@ -28,11 +28,11 @@ class Kernel implements KernelContract
     protected $artisan;
 
     /**
-     * Include the default Artisan commands.
+     * The Artisan commands provided by the application.
      *
-     * @var bool
+     * @var array
      */
-    protected $includeDefaultCommands = true;
+    protected $commands = [];
 
     /**
      * Create a new console kernel instance.
@@ -44,9 +44,7 @@ class Kernel implements KernelContract
     {
         $this->app = $app;
 
-        if ($this->includeDefaultCommands) {
-            $this->app->prepareForConsoleCommand();
-        }
+        $this->app->prepareForConsoleCommand();
 
         $this->defineConsoleSchedule();
     }
@@ -170,14 +168,9 @@ class Kernel implements KernelContract
      */
     protected function getCommands()
     {
-        if ($this->includeDefaultCommands) {
-            return array_merge($this->commands, [
-                'Illuminate\Console\Scheduling\ScheduleRunCommand',
-                'Laravel\Lumen\Console\Commands\ServeCommand',
-            ]);
-        } else {
-            return $this->commands;
-        }
+        return array_merge($this->commands, [
+            'Illuminate\Console\Scheduling\ScheduleRunCommand',
+        ]);
     }
 
     /**
