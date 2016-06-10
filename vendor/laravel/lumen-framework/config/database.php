@@ -53,7 +53,7 @@ return [
 
         'sqlite' => [
             'driver'   => 'sqlite',
-            'database' => env('DB_DATABASE', storage_path('database.sqlite')),
+            'database' => env('DB_DATABASE', base_path('database/database.sqlite')),
             'prefix'   => env('DB_PREFIX', ''),
         ],
 
@@ -64,11 +64,11 @@ return [
             'database'  => env('DB_DATABASE', 'forge'),
             'username'  => env('DB_USERNAME', 'forge'),
             'password'  => env('DB_PASSWORD', ''),
-            'charset'   => 'utf8',
-            'collation' => 'utf8_unicode_ci',
+            'charset'   => env('DB_CHARSET', 'utf8'),
+            'collation' => env('DB_COLLATION', 'utf8_unicode_ci'),
             'prefix'    => env('DB_PREFIX', ''),
             'timezone'  => env('DB_TIMEZONE', '+00:00'),
-            'strict'    => false,
+            'strict'    => env('DB_STRICT_MODE', false),
         ],
 
         'pgsql' => [
@@ -78,9 +78,9 @@ return [
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
-            'charset'  => 'utf8',
+            'charset'  => env('DB_CHARSET', 'utf8'),
             'prefix'   => env('DB_PREFIX', ''),
-            'schema'   => 'public',
+            'schema'   => env('DB_SCHEMA', 'public'),
         ],
 
         'sqlsrv' => [
@@ -89,6 +89,7 @@ return [
             'database' => env('DB_DATABASE', 'forge'),
             'username' => env('DB_USERNAME', 'forge'),
             'password' => env('DB_PASSWORD', ''),
+            'charset'  => env('DB_CHARSET', 'utf8'),
             'prefix'   => env('DB_PREFIX', ''),
         ],
 
