@@ -9,8 +9,6 @@ use Illuminate\Contracts\Cache\Store;
 
 class FileStore implements Store
 {
-    use RetrievesMultipleKeys;
-
     /**
      * The Illuminate Filesystem instance.
      *
@@ -41,7 +39,7 @@ class FileStore implements Store
     /**
      * Retrieve an item from the cache by key.
      *
-     * @param  string|array  $key
+     * @param  string  $key
      * @return mixed
      */
     public function get($key)
@@ -63,9 +61,7 @@ class FileStore implements Store
         // just return null. Otherwise, we'll get the contents of the file and get
         // the expiration UNIX timestamps from the start of the file's contents.
         try {
-            $expire = substr(
-                $contents = $this->files->get($path, true), 0, 10
-            );
+            $expire = substr($contents = $this->files->get($path), 0, 10);
         } catch (Exception $e) {
             return ['data' => null, 'time' => null];
         }
@@ -103,7 +99,7 @@ class FileStore implements Store
 
         $this->createCacheDirectory($path = $this->path($key));
 
-        $this->files->put($path, $value, true);
+        $this->files->put($path, $value);
     }
 
     /**
@@ -114,8 +110,10 @@ class FileStore implements Store
      */
     protected function createCacheDirectory($path)
     {
-        if (! $this->files->exists(dirname($path))) {
+        try {
             $this->files->makeDirectory(dirname($path), 0777, true, true);
+        } catch (Exception $e) {
+            //
         }
     }
 
@@ -200,7 +198,7 @@ class FileStore implements Store
      */
     protected function path($key)
     {
-        $parts = array_slice(str_split($hash = sha1($key), 2), 0, 2);
+        $parts = array_slice(str_split($hash = md5($key), 2), 0, 2);
 
         return $this->directory.'/'.implode('/', $parts).'/'.$hash;
     }
@@ -213,13 +211,11 @@ class FileStore implements Store
      */
     protected function expiration($minutes)
     {
-        $time = time() + ($minutes * 60);
-
-        if ($minutes === 0 || $time > 9999999999) {
+        if ($minutes === 0) {
             return 9999999999;
         }
 
-        return $time;
+        return time() + ($minutes * 60);
     }
 
     /**

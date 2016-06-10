@@ -2,14 +2,11 @@
 
 namespace Illuminate\Filesystem;
 
-use RuntimeException;
 use InvalidArgumentException;
 use Illuminate\Support\Collection;
 use League\Flysystem\AdapterInterface;
 use League\Flysystem\FilesystemInterface;
-use League\Flysystem\AwsS3v3\AwsS3Adapter;
 use League\Flysystem\FileNotFoundException;
-use League\Flysystem\Adapter\Local as LocalAdapter;
 use Illuminate\Contracts\Filesystem\Filesystem as FilesystemContract;
 use Illuminate\Contracts\Filesystem\Cloud as CloudFilesystemContract;
 use Illuminate\Contracts\Filesystem\FileNotFoundException as ContractFileNotFoundException;
@@ -72,11 +69,7 @@ class FilesystemAdapter implements FilesystemContract, CloudFilesystemContract
      */
     public function put($path, $contents, $visibility = null)
     {
-        if ($visibility = $this->parseVisibility($visibility)) {
-            $config = ['visibility' => $visibility];
-        } else {
-            $config = [];
-        }
+        $config = ['visibility' => $this->parseVisibility($visibility)];
 
         if (is_resource($contents)) {
             return $this->driver->putStream($path, $contents, $config);
@@ -119,10 +112,10 @@ class FilesystemAdapter implements FilesystemContract, CloudFilesystemContract
      * @param  string  $data
      * @return int
      */
-    public function prepend($path, $data, $separator = PHP_EOL)
+    public function prepend($path, $data)
     {
         if ($this->exists($path)) {
-            return $this->put($path, $data.$separator.$this->get($path));
+            return $this->put($path, $data.PHP_EOL.$this->get($path));
         }
 
         return $this->put($path, $data);
@@ -135,10 +128,10 @@ class FilesystemAdapter implements FilesystemContract, CloudFilesystemContract
      * @param  string  $data
      * @return int
      */
-    public function append($path, $data, $separator = PHP_EOL)
+    public function append($path, $data)
     {
         if ($this->exists($path)) {
-            return $this->put($path, $this->get($path).$separator.$data);
+            return $this->put($path, $this->get($path).PHP_EOL.$data);
         }
 
         return $this->put($path, $data);
@@ -155,11 +148,7 @@ class FilesystemAdapter implements FilesystemContract, CloudFilesystemContract
         $paths = is_array($paths) ? $paths : func_get_args();
 
         foreach ($paths as $path) {
-            try {
-                $this->driver->delete($path);
-            } catch (FileNotFoundException $e) {
-                //
-            }
+            $this->driver->delete($path);
         }
 
         return true;
@@ -220,27 +209,6 @@ class FilesystemAdapter implements FilesystemContract, CloudFilesystemContract
     public function lastModified($path)
     {
         return $this->driver->getTimestamp($path);
-    }
-
-    /**
-     * Get the URL for the file at the given path.
-     *
-     * @param  string  $path
-     * @return string
-     */
-    public function url($path)
-    {
-        $adapter = $this->driver->getAdapter();
-
-        if ($adapter instanceof AwsS3Adapter) {
-            $path = $adapter->getPathPrefix().$path;
-
-            return $adapter->getClient()->getObjectUrl($adapter->getBucket(), $path);
-        } elseif ($adapter instanceof LocalAdapter) {
-            return '/storage/'.$path;
-        } else {
-            throw new RuntimeException('This driver does not support retrieving URLs.');
-        }
     }
 
     /**
@@ -345,8 +313,7 @@ class FilesystemAdapter implements FilesystemContract, CloudFilesystemContract
      * Parse the given visibility value.
      *
      * @param  string|null  $visibility
-     * @return string|null
-     *
+     * @return string
      * @throws \InvalidArgumentException
      */
     protected function parseVisibility($visibility)

@@ -33,7 +33,7 @@ class PhpEngine implements EngineInterface
 
         ob_start();
 
-        extract($__data, EXTR_SKIP);
+        extract($__data);
 
         // We'll evaluate the contents of the view inside a try/catch block so we can
         // flush out any stray output that might get out before an error occurs or
@@ -58,7 +58,7 @@ class PhpEngine implements EngineInterface
      *
      * @throws $e
      */
-    protected function handleViewException(Exception $e, $obLevel)
+    protected function handleViewException($e, $obLevel)
     {
         while (ob_get_level() > $obLevel) {
             ob_end_clean();

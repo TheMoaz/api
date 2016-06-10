@@ -4,7 +4,6 @@ namespace Illuminate\Pagination;
 
 use Countable;
 use ArrayAccess;
-use JsonSerializable;
 use IteratorAggregate;
 use Illuminate\Support\Collection;
 use Illuminate\Contracts\Support\Jsonable;
@@ -12,7 +11,7 @@ use Illuminate\Contracts\Support\Arrayable;
 use Illuminate\Contracts\Pagination\Presenter;
 use Illuminate\Contracts\Pagination\LengthAwarePaginator as LengthAwarePaginatorContract;
 
-class LengthAwarePaginator extends AbstractPaginator implements Arrayable, ArrayAccess, Countable, IteratorAggregate, JsonSerializable, Jsonable, LengthAwarePaginatorContract
+class LengthAwarePaginator extends AbstractPaginator implements Arrayable, ArrayAccess, Countable, IteratorAggregate, Jsonable, LengthAwarePaginatorContract
 {
     /**
      * The total number of items before slicing.
@@ -47,8 +46,8 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
         $this->total = $total;
         $this->perPage = $perPage;
         $this->lastPage = (int) ceil($total / $perPage);
-        $this->path = $this->path != '/' ? rtrim($this->path, '/') : $this->path;
         $this->currentPage = $this->setCurrentPage($currentPage, $this->lastPage);
+        $this->path = $this->path != '/' ? rtrim($this->path, '/').'/' : $this->path;
         $this->items = $items instanceof Collection ? $items : Collection::make($items);
     }
 
@@ -63,13 +62,20 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
     {
         $currentPage = $currentPage ?: static::resolveCurrentPage();
 
+        // The page number will get validated and adjusted if it either less than one
+        // or greater than the last page available based on the count of the given
+        // items array. If it's greater than the last, we'll give back the last.
+        if (is_numeric($currentPage) && $currentPage > $lastPage) {
+            return $lastPage > 0 ? $lastPage : 1;
+        }
+
         return $this->isValidPageNumber($currentPage) ? (int) $currentPage : 1;
     }
 
     /**
      * Get the URL for the next page.
      *
-     * @return string|null
+     * @return string
      */
     public function nextPageUrl()
     {
@@ -114,17 +120,6 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
      * @param  \Illuminate\Contracts\Pagination\Presenter|null  $presenter
      * @return string
      */
-    public function links(Presenter $presenter = null)
-    {
-        return $this->render($presenter);
-    }
-
-    /**
-     * Render the paginator using the given presenter.
-     *
-     * @param  \Illuminate\Contracts\Pagination\Presenter|null  $presenter
-     * @return string
-     */
     public function render(Presenter $presenter = null)
     {
         if (is_null($presenter) && static::$presenterResolver) {
@@ -157,16 +152,6 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
     }
 
     /**
-     * Convert the object into something JSON serializable.
-     *
-     * @return array
-     */
-    public function jsonSerialize()
-    {
-        return $this->toArray();
-    }
-
-    /**
      * Convert the object to its JSON representation.
      *
      * @param  int  $options
@@ -174,6 +159,6 @@ class LengthAwarePaginator extends AbstractPaginator implements Arrayable, Array
      */
     public function toJson($options = 0)
     {
-        return json_encode($this->jsonSerialize(), $options);
+        return json_encode($this->toArray(), $options);
     }
 }

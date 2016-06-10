@@ -107,7 +107,7 @@ class Dispatcher implements DispatcherContract
      */
     public function hasListeners($eventName)
     {
-        return isset($this->listeners[$eventName]) || isset($this->wildcards[$eventName]);
+        return isset($this->listeners[$eventName]);
     }
 
     /**
@@ -258,7 +258,7 @@ class Dispatcher implements DispatcherContract
             $queue = method_exists($event, 'onQueue') ? $event->onQueue() : null;
 
             $this->resolveQueue()->connection($connection)->pushOn($queue, 'Illuminate\Broadcasting\BroadcastEvent', [
-                'event' => serialize(clone $event),
+                'event' => serialize($event),
             ]);
         }
     }
@@ -427,9 +427,7 @@ class Dispatcher implements DispatcherContract
      */
     protected function cloneArgumentsForQueueing(array $arguments)
     {
-        return array_map(function ($a) {
-            return is_object($a) ? clone $a : $a;
-        }, $arguments);
+        return array_map(function ($a) { return is_object($a) ? clone $a : $a; }, $arguments);
     }
 
     /**
@@ -457,11 +455,7 @@ class Dispatcher implements DispatcherContract
      */
     public function forget($event)
     {
-        if (Str::contains($event, '*')) {
-            unset($this->wildcards[$event]);
-        } else {
-            unset($this->listeners[$event], $this->sorted[$event]);
-        }
+        unset($this->listeners[$event], $this->sorted[$event]);
     }
 
     /**

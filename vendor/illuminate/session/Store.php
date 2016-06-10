@@ -283,11 +283,7 @@ class Store implements SessionInterface
     protected function addBagDataToSession()
     {
         foreach (array_merge($this->bags, [$this->metaBag]) as $bag) {
-            $key = $bag->getStorageKey();
-
-            if (isset($this->bagData[$key])) {
-                $this->put($key, $this->bagData[$key]);
-            }
+            $this->put($bag->getStorageKey(), $this->bagData[$bag->getStorageKey()]);
         }
     }
 
@@ -298,7 +294,9 @@ class Store implements SessionInterface
      */
     public function ageFlashData()
     {
-        $this->forget($this->get('flash.old', []));
+        foreach ($this->get('flash.old', []) as $old) {
+            $this->forget($old);
+        }
 
         $this->put('flash.old', $this->get('flash.new', []));
 
@@ -310,15 +308,7 @@ class Store implements SessionInterface
      */
     public function has($name)
     {
-        $keys = is_array($name) ? $name : func_get_args();
-
-        foreach ($keys as $value) {
-            if (is_null($this->get($value))) {
-                return false;
-            }
-        }
-
-        return true;
+        return ! is_null($this->get($name));
     }
 
     /**
@@ -383,7 +373,7 @@ class Store implements SessionInterface
      * Put a key / value pair or array of key / value pairs in the session.
      *
      * @param  string|array  $key
-     * @param  mixed       $value
+     * @param  mixed|null       $value
      * @return void
      */
     public function put($key, $value = null)
@@ -427,21 +417,6 @@ class Store implements SessionInterface
         $this->push('flash.new', $key);
 
         $this->removeFromOldFlashData([$key]);
-    }
-
-    /**
-     * Flash a key / value pair to the session
-     * for immediate use.
-     *
-     * @param  string $key
-     * @param  mixed $value
-     * @return void
-     */
-    public function now($key, $value)
-    {
-        $this->put($key, $value);
-
-        $this->push('flash.old', $key);
     }
 
     /**
@@ -531,14 +506,14 @@ class Store implements SessionInterface
     }
 
     /**
-     * Remove one or many items from the session.
+     * Remove an item from the session.
      *
-     * @param  string|array  $keys
+     * @param  string  $key
      * @return void
      */
-    public function forget($keys)
+    public function forget($key)
     {
-        Arr::forget($this->attributes, $keys);
+        Arr::forget($this->attributes, $key);
     }
 
     /**

@@ -31,13 +31,6 @@ class BelongsTo extends Relation
     protected $relation;
 
     /**
-     * The count of self joins.
-     *
-     * @var int
-     */
-    protected static $selfJoinCount = 0;
-
-    /**
      * Create a new belongs to relationship instance.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
@@ -84,20 +77,19 @@ class BelongsTo extends Relation
     }
 
     /**
-     * Add the constraints for a relationship query.
+     * Add the constraints for a relationship count query.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Builder  $parent
-     * @param  array|mixed  $columns
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getRelationQuery(Builder $query, Builder $parent, $columns = ['*'])
+    public function getRelationCountQuery(Builder $query, Builder $parent)
     {
         if ($parent->getQuery()->from == $query->getQuery()->from) {
-            return $this->getRelationQueryForSelfRelation($query, $parent, $columns);
+            return $this->getRelationCountQueryForSelfRelation($query, $parent);
         }
 
-        $query->select($columns);
+        $query->select(new Expression('count(*)'));
 
         $otherKey = $this->wrap($query->getModel()->getTable().'.'.$this->otherKey);
 
@@ -105,20 +97,17 @@ class BelongsTo extends Relation
     }
 
     /**
-     * Add the constraints for a relationship query on the same table.
+     * Add the constraints for a relationship count query on the same table.
      *
      * @param  \Illuminate\Database\Eloquent\Builder  $query
      * @param  \Illuminate\Database\Eloquent\Builder  $parent
-     * @param  array|mixed  $columns
      * @return \Illuminate\Database\Eloquent\Builder
      */
-    public function getRelationQueryForSelfRelation(Builder $query, Builder $parent, $columns = ['*'])
+    public function getRelationCountQueryForSelfRelation(Builder $query, Builder $parent)
     {
-        $query->select($columns);
+        $query->select(new Expression('count(*)'));
 
         $query->from($query->getModel()->getTable().' as '.$hash = $this->getRelationCountHash());
-
-        $query->getModel()->setTable($hash);
 
         $key = $this->wrap($this->getQualifiedForeignKey());
 
@@ -132,7 +121,7 @@ class BelongsTo extends Relation
      */
     public function getRelationCountHash()
     {
-        return 'laravel_reserved_'.static::$selfJoinCount++;
+        return 'self_'.md5(microtime(true));
     }
 
     /**
@@ -170,11 +159,11 @@ class BelongsTo extends Relation
             }
         }
 
-        // If there are no keys that were not null we will just return an array with either
-        // null or 0 in (depending on if incrementing keys are in use) so the query wont
-        // fail plus returns zero results, which should be what the developer expects.
-        if (count($keys) === 0) {
-            return [$this->related->incrementing ? 0 : null];
+        // If there are no keys that were not null we will just return an array with 0 in
+        // it so the query doesn't fail, but will not return any results, which should
+        // be what this developer is expecting in a case where this happens to them.
+        if (count($keys) == 0) {
+            return [0];
         }
 
         return array_values(array_unique($keys));

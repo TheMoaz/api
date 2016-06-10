@@ -13,10 +13,7 @@ class MySqlGrammar extends Grammar
      *
      * @var array
      */
-    protected $modifiers = [
-        'VirtualAs', 'StoredAs', 'Unsigned', 'Charset', 'Collate', 'Nullable',
-        'Default', 'Increment', 'Comment', 'After', 'First',
-    ];
+    protected $modifiers = ['Unsigned', 'Charset', 'Collate', 'Nullable', 'Default', 'Increment', 'Comment', 'After', 'First'];
 
     /**
      * The possible column serials.
@@ -57,9 +54,7 @@ class MySqlGrammar extends Grammar
     {
         $columns = implode(', ', $this->getColumns($blueprint));
 
-        $sql = $blueprint->temporary ? 'create temporary' : 'create';
-
-        $sql .= ' table '.$this->wrapTable($blueprint)." ($columns)";
+        $sql = 'create table '.$this->wrapTable($blueprint)." ($columns)";
 
         // Once we have the primary SQL, we can add the encoding option to the SQL for
         // the table.  Then, we can check if a storage engine has been supplied for
@@ -68,8 +63,6 @@ class MySqlGrammar extends Grammar
 
         if (isset($blueprint->engine)) {
             $sql .= ' engine = '.$blueprint->engine;
-        } elseif (! is_null($engine = $connection->getConfig('engine'))) {
-            $sql .= ' engine = '.$engine;
         }
 
         return $sql;
@@ -168,9 +161,7 @@ class MySqlGrammar extends Grammar
 
         $table = $this->wrapTable($blueprint);
 
-        $index = $this->wrap($command->index);
-
-        return "alter table {$table} add {$type} {$index}($columns)";
+        return "alter table {$table} add {$type} {$command->index}($columns)";
     }
 
     /**
@@ -236,9 +227,7 @@ class MySqlGrammar extends Grammar
     {
         $table = $this->wrapTable($blueprint);
 
-        $index = $this->wrap($command->index);
-
-        return "alter table {$table} drop index {$index}";
+        return "alter table {$table} drop index {$command->index}";
     }
 
     /**
@@ -252,9 +241,7 @@ class MySqlGrammar extends Grammar
     {
         $table = $this->wrapTable($blueprint);
 
-        $index = $this->wrap($command->index);
-
-        return "alter table {$table} drop index {$index}";
+        return "alter table {$table} drop index {$command->index}";
     }
 
     /**
@@ -268,9 +255,7 @@ class MySqlGrammar extends Grammar
     {
         $table = $this->wrapTable($blueprint);
 
-        $index = $this->wrap($command->index);
-
-        return "alter table {$table} drop foreign key {$index}";
+        return "alter table {$table} drop foreign key {$command->index}";
     }
 
     /**
@@ -285,26 +270,6 @@ class MySqlGrammar extends Grammar
         $from = $this->wrapTable($blueprint);
 
         return "rename table {$from} to ".$this->wrapTable($command->to);
-    }
-
-    /**
-     * Compile the command to enable foreign key constraints.
-     *
-     * @return string
-     */
-    public function compileEnableForeignKeyConstraints()
-    {
-        return 'SET FOREIGN_KEY_CHECKS=1;';
-    }
-
-    /**
-     * Compile the command to disable foreign key constraints.
-     *
-     * @return string
-     */
-    public function compileDisableForeignKeyConstraints()
-    {
-        return 'SET FOREIGN_KEY_CHECKS=0;';
     }
 
     /**
@@ -484,7 +449,7 @@ class MySqlGrammar extends Grammar
      */
     protected function typeJson(Fluent $column)
     {
-        return 'json';
+        return 'text';
     }
 
     /**
@@ -495,7 +460,7 @@ class MySqlGrammar extends Grammar
      */
     protected function typeJsonb(Fluent $column)
     {
-        return 'json';
+        return 'text';
     }
 
     /**
@@ -561,8 +526,8 @@ class MySqlGrammar extends Grammar
      */
     protected function typeTimestamp(Fluent $column)
     {
-        if ($column->useCurrent) {
-            return 'timestamp default CURRENT_TIMESTAMP';
+        if (! $column->nullable && $column->default === null) {
+            return 'timestamp default 0';
         }
 
         return 'timestamp';
@@ -576,8 +541,8 @@ class MySqlGrammar extends Grammar
      */
     protected function typeTimestampTz(Fluent $column)
     {
-        if ($column->useCurrent) {
-            return 'timestamp default CURRENT_TIMESTAMP';
+        if (! $column->nullable && $column->default === null) {
+            return 'timestamp default 0';
         }
 
         return 'timestamp';
@@ -592,67 +557,6 @@ class MySqlGrammar extends Grammar
     protected function typeBinary(Fluent $column)
     {
         return 'blob';
-    }
-
-    /**
-     * Create the column definition for a uuid type.
-     *
-     * @param  \Illuminate\Support\Fluent  $column
-     * @return string
-     */
-    protected function typeUuid(Fluent $column)
-    {
-        return 'char(36)';
-    }
-
-    /**
-     * Create the column definition for an IP address type.
-     *
-     * @param  \Illuminate\Support\Fluent  $column
-     * @return string
-     */
-    protected function typeIpAddress(Fluent $column)
-    {
-        return 'varchar(45)';
-    }
-
-    /**
-     * Create the column definition for a MAC address type.
-     *
-     * @param  \Illuminate\Support\Fluent  $column
-     * @return string
-     */
-    protected function typeMacAddress(Fluent $column)
-    {
-        return 'varchar(17)';
-    }
-
-    /**
-     * Get the SQL for a generated virtual column modifier.
-     *
-     * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
-     * @param  \Illuminate\Support\Fluent  $column
-     * @return string|null
-     */
-    protected function modifyVirtualAs(Blueprint $blueprint, Fluent $column)
-    {
-        if (! is_null($column->virtualAs)) {
-            return " as ({$column->virtualAs})";
-        }
-    }
-
-    /**
-     * Get the SQL for a generated stored column modifier.
-     *
-     * @param  \Illuminate\Database\Schema\Blueprint  $blueprint
-     * @param  \Illuminate\Support\Fluent  $column
-     * @return string|null
-     */
-    protected function modifyStoredAs(Blueprint $blueprint, Fluent $column)
-    {
-        if (! is_null($column->storedAs)) {
-            return " as ({$column->storedAs}) stored";
-        }
     }
 
     /**

@@ -208,6 +208,10 @@ class JsonResponseTest extends \PHPUnit_Framework_TestCase
      */
     public function testSetContentJsonSerializeError()
     {
+        if (!interface_exists('JsonSerializable')) {
+            $this->markTestSkipped('Interface JsonSerializable is available in PHP 5.4+');
+        }
+
         $serializable = new JsonSerializableObject();
 
         JsonResponse::create($serializable);

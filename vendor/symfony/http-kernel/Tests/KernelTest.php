@@ -20,6 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Tests\Fixtures\KernelForTest;
 use Symfony\Component\HttpKernel\Tests\Fixtures\KernelForOverrideName;
+use Symfony\Component\HttpKernel\Tests\Fixtures\FooBarBundle;
 
 class KernelTest extends \PHPUnit_Framework_TestCase
 {
@@ -98,7 +99,7 @@ class KernelTest extends \PHPUnit_Framework_TestCase
 
     public function testClassCacheIsNotLoadedByDefault()
     {
-        $kernel = $this->getKernel(array('initializeBundles', 'initializeContainer', 'doLoadClassCache'));
+        $kernel = $this->getKernel(array('initializeBundles', 'initializeContainer'));
         $kernel->expects($this->never())
             ->method('doLoadClassCache');
 
@@ -245,7 +246,7 @@ modified';
 $heredoc = <<<HD
 
 
-Heredoc should not be   modified {$a[1+$b]}
+Heredoc should not be   modified
 
 
 HD;
@@ -281,7 +282,7 @@ modified';
 $heredoc = <<<HD
 
 
-Heredoc should not be   modified {$a[1+$b]}
+Heredoc should not be   modified
 
 
 HD;
@@ -310,6 +311,48 @@ EOF;
         }
 
         $this->assertEquals($expected, $output);
+    }
+
+    /**
+     * @group legacy
+     */
+    public function testLegacyIsClassInActiveBundleFalse()
+    {
+        $kernel = $this->getKernelMockForIsClassInActiveBundleTest();
+
+        $this->assertFalse($kernel->isClassInActiveBundle('Not\In\Active\Bundle'));
+    }
+
+    /**
+     * @group legacy
+     */
+    public function testLegacyIsClassInActiveBundleFalseNoNamespace()
+    {
+        $kernel = $this->getKernelMockForIsClassInActiveBundleTest();
+
+        $this->assertFalse($kernel->isClassInActiveBundle('NotNamespacedClass'));
+    }
+
+    /**
+     * @group legacy
+     */
+    public function testLegacyIsClassInActiveBundleTrue()
+    {
+        $kernel = $this->getKernelMockForIsClassInActiveBundleTest();
+
+        $this->assertTrue($kernel->isClassInActiveBundle(__NAMESPACE__.'\Fixtures\FooBarBundle\SomeClass'));
+    }
+
+    protected function getKernelMockForIsClassInActiveBundleTest()
+    {
+        $bundle = new FooBarBundle();
+
+        $kernel = $this->getKernel(array('getBundles'));
+        $kernel->expects($this->once())
+            ->method('getBundles')
+            ->will($this->returnValue(array($bundle)));
+
+        return $kernel;
     }
 
     public function testGetRootDir()
@@ -687,17 +730,21 @@ EOF;
     public function testTerminateDelegatesTerminationOnlyForTerminableInterface()
     {
         // does not implement TerminableInterface
-        $httpKernel = new TestKernel();
+        $httpKernelMock = $this->getMockBuilder('Symfony\Component\HttpKernel\HttpKernelInterface')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $httpKernelMock
+            ->expects($this->never())
+            ->method('terminate');
 
         $kernel = $this->getKernel(array('getHttpKernel'));
         $kernel->expects($this->once())
             ->method('getHttpKernel')
-            ->willReturn($httpKernel);
+            ->will($this->returnValue($httpKernelMock));
 
         $kernel->boot();
         $kernel->terminate(Request::create('/'), new Response());
-
-        $this->assertFalse($httpKernel->terminateCalled, 'terminate() is never called if the kernel class does not implement TerminableInterface');
 
         // implements TerminableInterface
         $httpKernelMock = $this->getMockBuilder('Symfony\Component\HttpKernel\HttpKernel')
@@ -798,19 +845,5 @@ EOF;
         $p->setValue($kernel, __DIR__.'/Fixtures');
 
         return $kernel;
-    }
-}
-
-class TestKernel implements HttpKernelInterface
-{
-    public $terminateCalled = false;
-
-    public function terminate()
-    {
-        $this->terminateCalled = true;
-    }
-
-    public function handle(Request $request, $type = self::MASTER_REQUEST, $catch = true)
-    {
     }
 }

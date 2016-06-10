@@ -16,31 +16,12 @@ class SqsConnector implements ConnectorInterface
      */
     public function connect(array $config)
     {
-        $config = $this->getDefaultConfiguration($config);
+        $config += ['version' => 'latest'];
 
         if ($config['key'] && $config['secret']) {
             $config['credentials'] = Arr::only($config, ['key', 'secret']);
         }
 
-        return new SqsQueue(
-            new SqsClient($config), $config['queue'], Arr::get($config, 'prefix', '')
-        );
-    }
-
-    /**
-     * Get the default configuration for SQS.
-     *
-     * @param  array  $config
-     * @return array
-     */
-    protected function getDefaultConfiguration(array $config)
-    {
-        return array_merge([
-            'version' => 'latest',
-            'http' => [
-                'timeout' => 60,
-                'connect_timeout' => 60,
-            ],
-        ], $config);
+        return new SqsQueue(new SqsClient($config), $config['queue']);
     }
 }

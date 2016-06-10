@@ -42,39 +42,6 @@ class QueueManager implements FactoryContract, MonitorContract
     }
 
     /**
-     * Register an event listener for the before job event.
-     *
-     * @param  mixed  $callback
-     * @return void
-     */
-    public function before($callback)
-    {
-        $this->app['events']->listen(Events\JobProcessing::class, $callback);
-    }
-
-    /**
-     * Register an event listener for the after job event.
-     *
-     * @param  mixed  $callback
-     * @return void
-     */
-    public function after($callback)
-    {
-        $this->app['events']->listen(Events\JobProcessed::class, $callback);
-    }
-
-    /**
-     * Register an event listener for the exception occurred job event.
-     *
-     * @param  mixed  $callback
-     * @return void
-     */
-    public function exceptionOccurred($callback)
-    {
-        $this->app['events']->listen(Events\JobExceptionOccurred::class, $callback);
-    }
-
-    /**
      * Register an event listener for the daemon queue loop.
      *
      * @param  mixed  $callback
@@ -93,7 +60,7 @@ class QueueManager implements FactoryContract, MonitorContract
      */
     public function failing($callback)
     {
-        $this->app['events']->listen(Events\JobFailed::class, $callback);
+        $this->app['events']->listen('illuminate.queue.failed', $callback);
     }
 
     /**
@@ -104,7 +71,7 @@ class QueueManager implements FactoryContract, MonitorContract
      */
     public function stopping($callback)
     {
-        $this->app['events']->listen(Events\WorkerStopping::class, $callback);
+        $this->app['events']->listen('illuminate.queue.stopping', $callback);
     }
 
     /**
@@ -204,10 +171,6 @@ class QueueManager implements FactoryContract, MonitorContract
      */
     protected function getConfig($name)
     {
-        if ($name === null || $name === 'null') {
-            return ['driver' => 'null'];
-        }
-
         return $this->app['config']["queue.connections.{$name}"];
     }
 

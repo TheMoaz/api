@@ -26,6 +26,8 @@ use Symfony\Component\Console\Formatter\OutputFormatter;
  *  * quiet: -q (no output)
  *
  * @author Fabien Potencier <fabien@symfony.com>
+ *
+ * @api
  */
 abstract class Output implements OutputInterface
 {
@@ -38,6 +40,8 @@ abstract class Output implements OutputInterface
      * @param int                           $verbosity The verbosity level (one of the VERBOSITY constants in OutputInterface)
      * @param bool                          $decorated Whether to decorate messages
      * @param OutputFormatterInterface|null $formatter Output formatter instance (null to use default OutputFormatter)
+     *
+     * @api
      */
     public function __construct($verbosity = self::VERBOSITY_NORMAL, $decorated = false, OutputFormatterInterface $formatter = null)
     {
@@ -117,27 +121,21 @@ abstract class Output implements OutputInterface
     /**
      * {@inheritdoc}
      */
-    public function writeln($messages, $options = self::OUTPUT_NORMAL)
+    public function writeln($messages, $type = self::OUTPUT_NORMAL)
     {
-        $this->write($messages, true, $options);
+        $this->write($messages, true, $type);
     }
 
     /**
      * {@inheritdoc}
      */
-    public function write($messages, $newline = false, $options = self::OUTPUT_NORMAL)
+    public function write($messages, $newline = false, $type = self::OUTPUT_NORMAL)
     {
-        $messages = (array) $messages;
-
-        $types = self::OUTPUT_NORMAL | self::OUTPUT_RAW | self::OUTPUT_PLAIN;
-        $type = $types & $options ?: self::OUTPUT_NORMAL;
-
-        $verbosities = self::VERBOSITY_QUIET | self::VERBOSITY_NORMAL | self::VERBOSITY_VERBOSE | self::VERBOSITY_VERY_VERBOSE | self::VERBOSITY_DEBUG;
-        $verbosity = $verbosities & $options ?: self::VERBOSITY_NORMAL;
-
-        if ($verbosity > $this->getVerbosity()) {
+        if (self::VERBOSITY_QUIET === $this->verbosity) {
             return;
         }
+
+        $messages = (array) $messages;
 
         foreach ($messages as $message) {
             switch ($type) {
@@ -149,6 +147,8 @@ abstract class Output implements OutputInterface
                 case OutputInterface::OUTPUT_PLAIN:
                     $message = strip_tags($this->formatter->format($message));
                     break;
+                default:
+                    throw new \InvalidArgumentException(sprintf('Unknown output type given (%s)', $type));
             }
 
             $this->doWrite($message, $newline);

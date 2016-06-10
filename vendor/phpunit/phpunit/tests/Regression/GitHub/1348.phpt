@@ -2,9 +2,8 @@
 GH-1348: STDOUT/STDERR IO streams should exist in process isolation
 --SKIPIF--
 <?php
-if (defined('HHVM_VERSION')) {
+if (defined('HHVM_VERSION'))
     print 'skip: PHP runtime required';
-}
 ?>
 --FILE--
 <?php
@@ -25,7 +24,7 @@ PHPUnit %s by Sebastian Bergmann and contributors.
 STDOUT does not break test result
 E
 
-Time: %s, Memory: %s
+Time: %s, Memory: %sMb
 
 There was 1 error:
 

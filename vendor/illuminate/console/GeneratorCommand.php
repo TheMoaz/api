@@ -45,7 +45,7 @@ abstract class GeneratorCommand extends Command
     /**
      * Execute the console command.
      *
-     * @return bool|null
+     * @return void
      */
     public function fire()
     {
@@ -76,7 +76,7 @@ abstract class GeneratorCommand extends Command
     {
         $name = $this->parseName($rawName);
 
-        return $this->files->exists($this->getPath($name));
+        return $this->files->exists($path = $this->getPath($name));
     }
 
     /**
@@ -202,7 +202,7 @@ abstract class GeneratorCommand extends Command
      */
     protected function getNameInput()
     {
-        return trim($this->argument('name'));
+        return $this->argument('name');
     }
 
     /**

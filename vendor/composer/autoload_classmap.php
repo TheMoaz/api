@@ -6,12 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'DatabaseSeeder' => $baseDir . '/../../../web/skillbazaar/api/database/seeds/DatabaseSeeder.php',
-    'ExampleTest' => $baseDir . '/../../../web/skillbazaar/api/tests/ExampleTest.php',
+    'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
+    'ExampleTest' => $baseDir . '/tests/ExampleTest.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
     'IlluminateQueueClosure' => $vendorDir . '/illuminate/queue/IlluminateQueueClosure.php',
+    'Illuminate\\Foundation\\Composer' => $vendorDir . '/laravel/lumen-framework/src/Foundation/Composer.php',
+    'Illuminate\\Foundation\\Support\\Providers\\EventServiceProvider' => $vendorDir . '/laravel/lumen-framework/src/Foundation/Support/Providers/EventServiceProvider.php',
+    'Illuminate\\Foundation\\Testing\\DatabaseMigrations' => $vendorDir . '/laravel/lumen-framework/src/Foundation/Testing/DatabaseMigrations.php',
+    'Illuminate\\Foundation\\Testing\\DatabaseTransactions' => $vendorDir . '/laravel/lumen-framework/src/Foundation/Testing/DatabaseTransactions.php',
     'PHPUnit_Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit_Extensions_GroupTestSuite' => $vendorDir . '/phpunit/phpunit/src/Extensions/GroupTestSuite.php',
     'PHPUnit_Extensions_PhptTestCase' => $vendorDir . '/phpunit/phpunit/src/Extensions/PhptTestCase.php',
@@ -434,7 +438,6 @@ return array(
     'SebastianBergmann\\Environment\\Runtime' => $vendorDir . '/sebastian/environment/src/Runtime.php',
     'SebastianBergmann\\Exporter\\Exporter' => $vendorDir . '/sebastian/exporter/src/Exporter.php',
     'SebastianBergmann\\GlobalState\\Blacklist' => $vendorDir . '/sebastian/global-state/src/Blacklist.php',
-    'SebastianBergmann\\GlobalState\\CodeExporter' => $vendorDir . '/sebastian/global-state/src/CodeExporter.php',
     'SebastianBergmann\\GlobalState\\Exception' => $vendorDir . '/sebastian/global-state/src/Exception.php',
     'SebastianBergmann\\GlobalState\\Restorer' => $vendorDir . '/sebastian/global-state/src/Restorer.php',
     'SebastianBergmann\\GlobalState\\RuntimeException' => $vendorDir . '/sebastian/global-state/src/RuntimeException.php',
@@ -443,6 +446,7 @@ return array(
     'SebastianBergmann\\RecursionContext\\Exception' => $vendorDir . '/sebastian/recursion-context/src/Exception.php',
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
-    'TestCase' => $baseDir . '/../../../web/skillbazaar/api/tests/TestCase.php',
+    'SessionHandlerInterface' => $vendorDir . '/symfony/http-foundation/Resources/stubs/SessionHandlerInterface.php',
+    'TestCase' => $baseDir . '/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
 );
