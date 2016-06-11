@@ -11,6 +11,14 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
-});
+// $app->get('/', function () use ($app) {
+//     return $app->version();
+// });
+
+$app->get('/', 					'HomeController@index');
+$app->get('/users',				'UserController@index');
+
+$app->get('/user/create',		'UserController@create');
+$app->get('/user/{id}',			'UserController@show');
+$app->get('/user/edit/{id}',	'UserController@edit');
+
