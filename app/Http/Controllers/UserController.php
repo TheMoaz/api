@@ -20,28 +20,32 @@ class UserController extends Controller
     public function index()
     {
         $users = User::all();
-
         return response()->json($users);
     }
 
-    public function show($id)
+    public function read($id)
     {
-        $user = null; 
-
-        // Search by User ID
-        $user = User::with('skills')->find($id);
-
-        if (!$user)
-        {
-            $content = array('message' => 'Not Found'); 
-            return  response($content, 404);
-        }
-        
+        $user = User::find($id);
         return response()->json($user);
     }
 
     public function create(Request $request)
     {
-        return $request->input(); 
+        $user = User::create($request->all());
+        return response()->json($user);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+        $updated = $user->update($request->all());
+        return response()->json(['updated' => $updated]);
+    }
+
+    public function delete($id)
+    {
+        $deletedRows = User::destroy($id);
+        $deleted = $deletedRows == 1;
+        return response()->json(['deleted' => $deleted]);
     }
 }

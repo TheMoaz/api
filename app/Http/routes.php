@@ -15,10 +15,14 @@
 //     return $app->version();
 // });
 
-$app->get('/', 					'HomeController@index');
-$app->get('/users',				'UserController@index');
+$app->group(['prefix' => 'v1', 'namespace' => 'App\Http\Controllers'], function ($app)
+{
+	$app->get('/', 'HomeController@index');
+	$app->get('/users',	'UserController@index');
+	$app->post('/users/create',	'UserController@create');
+	$app->get('/users/{id}', 'UserController@read');
+	$app->put('/users/edit/{id}', 'UserController@update');
+	$app->delete('/users/delete/{id}', 'UserController@delete');
+});
 
-$app->get('/user/create',		'UserController@create');
-$app->get('/user/{id}',			'UserController@show');
-$app->get('/user/edit/{id}',	'UserController@edit');
 
