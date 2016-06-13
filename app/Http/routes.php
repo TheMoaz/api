@@ -19,9 +19,14 @@ $app->group(['namespace' => 'App\Http\Controllers', 'prefix' => 'v1'], function 
 
 	$app->post(	'users/add',		'UserController@store');
 	$app->patch('users/verify',		'UserController@verify');
-	$app->put(	'users/{id}/edit', 	'UserController@update');
-	$app->get(	'users/{id}', 		'UserController@show');
-	$app->get(	'users', 			'UserController@index');
+
+	//Edit an existing user
+	$app->get(	'users/{id}/edit', 	'UserController@edit'); 	// Request authorization code
+	$app->post(	'users/{id}/edit', 	'UserController@update');	// Submit edit request
+
+	$app->get(	'users/{id}', 		'UserController@show');	// Request individual user record
+
+	$app->get(	'users', 			'UserController@index');	// Request all user records
 
 	$app->post(	'profiles/add',			'ProfileController@store');
 	$app->patch('profiles/verify',		'ProfileController@verify');
