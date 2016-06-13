@@ -24,9 +24,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
      *
      * @var array
      */
-    protected $fillable = ['provider_id', 'name', 'email', 'phone', 'password', 'provider', 'avatar', 'confirm_code', 'active'];
+    protected $fillable = ['provider_id', 'name', 'email', 'phone', 'password', 'provider', 'avatar', 'confirm_code', 'active', 'role'];
 
-    protected $hidden = ['provider_id', 'provider', 'role','password', 'active', 'confirm_code', 'remember_token','summary']; 
+    /**
+     * The attributes that are hidden from view.
+     *
+     * @var array
+     */
+    protected $hidden = ['provider_id', 'password', 'confirm_code', 'remember_token','summary', 'designation']; 
+
+
 
     public function profile()
     {
@@ -56,6 +63,16 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     public function scopeAdmins($query)
     {
         return $query->where('role', 'Admin'); 
+    }
+
+    public function scopeMembers($query)
+    {
+        return $query->where('role', 'Member'); 
+    }
+
+    public function scopeMerchants($query)
+    {
+        return $query->where('role', 'Merchant'); 
     }
 
     public function scopeActive($query)

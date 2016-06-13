@@ -763,108 +763,6 @@
         ]
     },
     {
-        "name": "illuminate/contracts",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/contracts.git",
-            "reference": "411b851962c211078ade7664a6976e77a78cd2a5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/contracts/zipball/411b851962c211078ade7664a6976e77a78cd2a5",
-            "reference": "411b851962c211078ade7664a6976e77a78cd2a5",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.5.9"
-        },
-        "time": "2016-03-07 20:37:17",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Contracts\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Contracts package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/support",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/support.git",
-            "reference": "61329ea409362fdae167fdca1125f46c997ce689"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/support/zipball/61329ea409362fdae167fdca1125f46c997ce689",
-            "reference": "61329ea409362fdae167fdca1125f46c997ce689",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/inflector": "~1.0",
-            "ext-mbstring": "*",
-            "illuminate/contracts": "5.2.*",
-            "paragonie/random_compat": "~1.4",
-            "php": ">=5.5.9"
-        },
-        "suggest": {
-            "illuminate/filesystem": "Required to use the composer class (5.2.*).",
-            "jeremeamia/superclosure": "Required to be able to serialize closures (~2.2).",
-            "symfony/polyfill-php56": "Required to use the hash_equals function on PHP 5.5 (~1.0).",
-            "symfony/process": "Required to use the composer class (2.8.*|3.0.*).",
-            "symfony/var-dumper": "Improves the dd function (2.8.*|3.0.*)."
-        },
-        "time": "2016-05-14 16:24:10",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Support\\": ""
-            },
-            "files": [
-                "helpers.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Support package.",
-        "homepage": "http://laravel.com"
-    },
-    {
         "name": "symfony/finder",
         "version": "v3.0.7",
         "version_normalized": "3.0.7.0",
@@ -914,200 +812,6 @@
         ],
         "description": "Symfony Finder Component",
         "homepage": "https://symfony.com"
-    },
-    {
-        "name": "illuminate/filesystem",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/filesystem.git",
-            "reference": "b1d1a5380376f09af93d563861fe6d631ddcc7b4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/filesystem/zipball/b1d1a5380376f09af93d563861fe6d631ddcc7b4",
-            "reference": "b1d1a5380376f09af93d563861fe6d631ddcc7b4",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9",
-            "symfony/finder": "2.8.*|3.0.*"
-        },
-        "suggest": {
-            "league/flysystem": "Required to use the Flysystem local and FTP drivers (~1.0).",
-            "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (~1.0).",
-            "league/flysystem-rackspace": "Required to use the Flysystem Rackspace driver (~1.0)."
-        },
-        "time": "2016-05-15 17:29:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Filesystem\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Filesystem package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/container",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/container.git",
-            "reference": "1e156f8017490f5583ab161030bf839c77c95e54"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/container/zipball/1e156f8017490f5583ab161030bf839c77c95e54",
-            "reference": "1e156f8017490f5583ab161030bf839c77c95e54",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "php": ">=5.5.9"
-        },
-        "time": "2016-03-16 17:19:17",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Container\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Container package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/events",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/events.git",
-            "reference": "5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/events/zipball/5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b",
-            "reference": "5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "5.2.*",
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9"
-        },
-        "time": "2016-01-01 01:00:19",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Events\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Events package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/view",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/view.git",
-            "reference": "0b3c417e98976a93d5205f542d55cdebe151c5f8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/view/zipball/0b3c417e98976a93d5205f542d55cdebe151c5f8",
-            "reference": "0b3c417e98976a93d5205f542d55cdebe151c5f8",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "5.2.*",
-            "illuminate/contracts": "5.2.*",
-            "illuminate/events": "5.2.*",
-            "illuminate/filesystem": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9",
-            "symfony/debug": "2.8.*|3.0.*"
-        },
-        "time": "2016-04-25 01:26:30",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\View\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate View package.",
-        "homepage": "http://laravel.com"
     },
     {
         "name": "symfony/translation",
@@ -1174,105 +878,6 @@
         ],
         "description": "Symfony Translation Component",
         "homepage": "https://symfony.com"
-    },
-    {
-        "name": "illuminate/validation",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/validation.git",
-            "reference": "caaca80882e9e2015befa992fd62a079e0a8514b"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/validation/zipball/caaca80882e9e2015befa992fd62a079e0a8514b",
-            "reference": "caaca80882e9e2015befa992fd62a079e0a8514b",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "5.2.*",
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9",
-            "symfony/http-foundation": "2.8.*|3.0.*",
-            "symfony/translation": "2.8.*|3.0.*"
-        },
-        "suggest": {
-            "illuminate/database": "Required to use the database presence verifier (5.2.*)."
-        },
-        "time": "2016-05-11 14:30:29",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Validation\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Validation package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/translation",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/translation.git",
-            "reference": "04aa7985562ae079711a0e46e5fd63db29233adf"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/translation/zipball/04aa7985562ae079711a0e46e5fd63db29233adf",
-            "reference": "04aa7985562ae079711a0e46e5fd63db29233adf",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/filesystem": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9",
-            "symfony/translation": "2.8.*|3.0.*"
-        },
-        "time": "2016-04-21 13:19:18",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Translation\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Translation package.",
-        "homepage": "http://laravel.com"
     },
     {
         "name": "nesbot/carbon",
@@ -1435,714 +1040,6 @@
         ],
         "description": "Symfony Console Component",
         "homepage": "https://symfony.com"
-    },
-    {
-        "name": "illuminate/console",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/console.git",
-            "reference": "6fe633078a4ae1915f391d87e5c95092fbadf2b0"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/console/zipball/6fe633078a4ae1915f391d87e5c95092fbadf2b0",
-            "reference": "6fe633078a4ae1915f391d87e5c95092fbadf2b0",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "nesbot/carbon": "~1.20",
-            "php": ">=5.5.9",
-            "symfony/console": "2.8.*|3.0.*"
-        },
-        "suggest": {
-            "guzzlehttp/guzzle": "Required to use the ping methods on schedules (~5.3|~6.0).",
-            "mtdowling/cron-expression": "Required to use scheduling component (~1.0).",
-            "symfony/process": "Required to use scheduling component (2.8.*|3.0.*)."
-        },
-        "time": "2016-05-16 13:24:33",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Console\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Console package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/queue",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/queue.git",
-            "reference": "b492ad8495ea035aba541a0ec3ecbd8115a0ebe8"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/queue/zipball/b492ad8495ea035aba541a0ec3ecbd8115a0ebe8",
-            "reference": "b492ad8495ea035aba541a0ec3ecbd8115a0ebe8",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/console": "5.2.*",
-            "illuminate/container": "5.2.*",
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "nesbot/carbon": "~1.20",
-            "php": ">=5.5.9",
-            "symfony/debug": "2.8.*|3.0.*",
-            "symfony/process": "2.8.*|3.0.*"
-        },
-        "suggest": {
-            "aws/aws-sdk-php": "Required to use the SQS queue driver (~3.0).",
-            "illuminate/redis": "Required to use the Redis queue driver (5.2.*).",
-            "pda/pheanstalk": "Required to use the Beanstalk queue driver (~3.0)."
-        },
-        "time": "2016-05-10 12:14:06",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Queue\\": ""
-            },
-            "classmap": [
-                "IlluminateQueueClosure.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Queue package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/pipeline",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/pipeline.git",
-            "reference": "0c97454ca225d35e530f94624654b1a25577cb1c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/pipeline/zipball/0c97454ca225d35e530f94624654b1a25577cb1c",
-            "reference": "0c97454ca225d35e530f94624654b1a25577cb1c",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9"
-        },
-        "time": "2016-04-08 04:24:31",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Pipeline\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Pipeline package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/pagination",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/pagination.git",
-            "reference": "4f98bbdc05a0ab11e29f33f9962062f0c1320ca5"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/pagination/zipball/4f98bbdc05a0ab11e29f33f9962062f0c1320ca5",
-            "reference": "4f98bbdc05a0ab11e29f33f9962062f0c1320ca5",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9"
-        },
-        "time": "2016-03-15 19:15:44",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Pagination\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Pagination package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/session",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/session.git",
-            "reference": "bd1e5729b6791dd8c91eec155bbfa06d465ea235"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/session/zipball/bd1e5729b6791dd8c91eec155bbfa06d465ea235",
-            "reference": "bd1e5729b6791dd8c91eec155bbfa06d465ea235",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "nesbot/carbon": "~1.20",
-            "php": ">=5.5.9",
-            "symfony/finder": "2.8.*|3.0.*",
-            "symfony/http-foundation": "2.8.*|3.0.*"
-        },
-        "suggest": {
-            "illuminate/console": "Required to use the session:table command (5.2.*)."
-        },
-        "time": "2016-04-07 02:32:40",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Session\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Session package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/http",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/http.git",
-            "reference": "fcba03c8e582d9089d969540677a0e22bf1a8ace"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/http/zipball/fcba03c8e582d9089d969540677a0e22bf1a8ace",
-            "reference": "fcba03c8e582d9089d969540677a0e22bf1a8ace",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/session": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9",
-            "symfony/http-foundation": "2.8.*|3.0.*",
-            "symfony/http-kernel": "2.8.*|3.0.*"
-        },
-        "time": "2016-05-12 13:47:10",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Http\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Http package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/hashing",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/hashing.git",
-            "reference": "be191f14432c801d15a4865a52c70f30aeb0212c"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/hashing/zipball/be191f14432c801d15a4865a52c70f30aeb0212c",
-            "reference": "be191f14432c801d15a4865a52c70f30aeb0212c",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9"
-        },
-        "time": "2015-11-30 19:26:21",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Hashing\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Hashing package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/encryption",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/encryption.git",
-            "reference": "bd76d4c6b5a2cddbd47ae0b70518613086b2f410"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/encryption/zipball/bd76d4c6b5a2cddbd47ae0b70518613086b2f410",
-            "reference": "bd76d4c6b5a2cddbd47ae0b70518613086b2f410",
-            "shasum": ""
-        },
-        "require": {
-            "ext-mbstring": "*",
-            "ext-openssl": "*",
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "paragonie/random_compat": "~1.4",
-            "php": ">=5.5.9"
-        },
-        "time": "2016-04-25 01:08:38",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Encryption\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Encryption package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/database",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/database.git",
-            "reference": "5fbd370c687b5f428357982883eadf9fa33cf9a1"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/database/zipball/5fbd370c687b5f428357982883eadf9fa33cf9a1",
-            "reference": "5fbd370c687b5f428357982883eadf9fa33cf9a1",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "5.2.*",
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "nesbot/carbon": "~1.20",
-            "php": ">=5.5.9"
-        },
-        "suggest": {
-            "doctrine/dbal": "Required to rename columns and drop SQLite columns (~2.4).",
-            "fzaninotto/faker": "Required to use the eloquent factory builder (~1.4).",
-            "illuminate/console": "Required to use the database commands (5.2.*).",
-            "illuminate/events": "Required to use the observers with Eloquent (5.2.*).",
-            "illuminate/filesystem": "Required to use the migrations (5.2.*).",
-            "illuminate/pagination": "Required to paginate the result set (5.2.*)."
-        },
-        "time": "2016-05-15 17:43:26",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Database\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Database package.",
-        "homepage": "http://laravel.com",
-        "keywords": [
-            "database",
-            "laravel",
-            "orm",
-            "sql"
-        ]
-    },
-    {
-        "name": "illuminate/config",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/config.git",
-            "reference": "29d25fa086eac092a54859b3cbf7580299fc101e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/config/zipball/29d25fa086eac092a54859b3cbf7580299fc101e",
-            "reference": "29d25fa086eac092a54859b3cbf7580299fc101e",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/filesystem": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9"
-        },
-        "time": "2015-06-22 20:36:58",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Config\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Config package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/cache",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/cache.git",
-            "reference": "82b37c66bc237e461e4a0039c8c6de3d328fc32a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/cache/zipball/82b37c66bc237e461e4a0039c8c6de3d328fc32a",
-            "reference": "82b37c66bc237e461e4a0039c8c6de3d328fc32a",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "nesbot/carbon": "~1.20",
-            "php": ">=5.5.9"
-        },
-        "suggest": {
-            "illuminate/database": "Required to use the database cache driver (5.2.*).",
-            "illuminate/filesystem": "Required to use the file cache driver (5.2.*).",
-            "illuminate/redis": "Required to use the redis cache driver (5.2.*)."
-        },
-        "time": "2016-04-25 01:12:38",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Cache\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Cache package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/bus",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/bus.git",
-            "reference": "4c45efed0f93e107cd0357d02ac1bbb220b36ba4"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/bus/zipball/4c45efed0f93e107cd0357d02ac1bbb220b36ba4",
-            "reference": "4c45efed0f93e107cd0357d02ac1bbb220b36ba4",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/pipeline": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9"
-        },
-        "time": "2015-12-05 22:11:33",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Bus\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Bus package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/broadcasting",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/broadcasting.git",
-            "reference": "d7eb39ed7802473094bc75029c4fed55a38d1d24"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/broadcasting/zipball/d7eb39ed7802473094bc75029c4fed55a38d1d24",
-            "reference": "d7eb39ed7802473094bc75029c4fed55a38d1d24",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "php": ">=5.5.9"
-        },
-        "suggest": {
-            "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (~2.0)."
-        },
-        "time": "2015-12-24 14:23:14",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Broadcasting\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Broadcasting package.",
-        "homepage": "http://laravel.com"
-    },
-    {
-        "name": "illuminate/auth",
-        "version": "v5.2.32",
-        "version_normalized": "5.2.32.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/auth.git",
-            "reference": "71f16f551b74427f65585ef18308f454b8f5077e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/auth/zipball/71f16f551b74427f65585ef18308f454b8f5077e",
-            "reference": "71f16f551b74427f65585ef18308f454b8f5077e",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.2.*",
-            "illuminate/http": "5.2.*",
-            "illuminate/support": "5.2.*",
-            "nesbot/carbon": "~1.20",
-            "php": ">=5.5.9"
-        },
-        "suggest": {
-            "illuminate/console": "Required to use the auth:clear-resets command (5.2.*).",
-            "illuminate/session": "Required to use the session based guard (5.2.*)"
-        },
-        "time": "2016-05-02 14:05:10",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.2-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Auth\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylorotwell@gmail.com"
-            }
-        ],
-        "description": "The Illuminate Auth package.",
-        "homepage": "http://laravel.com"
     },
     {
         "name": "laravel/lumen-framework",
@@ -3474,6 +2371,1110 @@
             "phpunit",
             "testing",
             "xunit"
+        ]
+    },
+    {
+        "name": "illuminate/contracts",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/contracts.git",
+            "reference": "f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/contracts/zipball/f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5",
+            "reference": "f4f44d7c6d20404da8dfc655bd3d6dd788dfdce5",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=5.5.9"
+        },
+        "time": "2016-05-31 21:36:13",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Contracts\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Contracts package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/support",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/support.git",
+            "reference": "6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/support/zipball/6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b",
+            "reference": "6e86ac2b4e3d0c42c2dc846dbac3e74d378a812b",
+            "shasum": ""
+        },
+        "require": {
+            "doctrine/inflector": "~1.0",
+            "ext-mbstring": "*",
+            "illuminate/contracts": "5.2.*",
+            "paragonie/random_compat": "~1.4",
+            "php": ">=5.5.9"
+        },
+        "suggest": {
+            "illuminate/filesystem": "Required to use the composer class (5.2.*).",
+            "jeremeamia/superclosure": "Required to be able to serialize closures (~2.2).",
+            "symfony/polyfill-php56": "Required to use the hash_equals function on PHP 5.5 (~1.0).",
+            "symfony/process": "Required to use the composer class (2.8.*|3.0.*).",
+            "symfony/var-dumper": "Improves the dd function (2.8.*|3.0.*)."
+        },
+        "time": "2016-05-30 02:40:53",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Support\\": ""
+            },
+            "files": [
+                "helpers.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Support package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/session",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/session.git",
+            "reference": "76e10560cb57b20425689ef56e439b9d7e5a8a29"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/session/zipball/76e10560cb57b20425689ef56e439b9d7e5a8a29",
+            "reference": "76e10560cb57b20425689ef56e439b9d7e5a8a29",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "nesbot/carbon": "~1.20",
+            "php": ">=5.5.9",
+            "symfony/finder": "2.8.*|3.0.*",
+            "symfony/http-foundation": "2.8.*|3.0.*"
+        },
+        "suggest": {
+            "illuminate/console": "Required to use the session:table command (5.2.*)."
+        },
+        "time": "2016-06-10 22:38:27",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Session\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Session package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/http",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/http.git",
+            "reference": "db774c2af76c180f89b8bd51ac550e2f18c0caa7"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/http/zipball/db774c2af76c180f89b8bd51ac550e2f18c0caa7",
+            "reference": "db774c2af76c180f89b8bd51ac550e2f18c0caa7",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/session": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9",
+            "symfony/http-foundation": "2.8.*|3.0.*",
+            "symfony/http-kernel": "2.8.*|3.0.*"
+        },
+        "time": "2016-05-23 14:30:21",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Http\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Http package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/auth",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/auth.git",
+            "reference": "df4409c6f32b8cc9e88f795c41ce867c0b8753b0"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/auth/zipball/df4409c6f32b8cc9e88f795c41ce867c0b8753b0",
+            "reference": "df4409c6f32b8cc9e88f795c41ce867c0b8753b0",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/http": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "nesbot/carbon": "~1.20",
+            "php": ">=5.5.9"
+        },
+        "suggest": {
+            "illuminate/console": "Required to use the auth:clear-resets command (5.2.*).",
+            "illuminate/queue": "Required to fire login / logout events (5.2.*).",
+            "illuminate/session": "Required to use the session based guard (5.2.*)."
+        },
+        "time": "2016-06-06 14:05:19",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Auth\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Auth package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/broadcasting",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/broadcasting.git",
+            "reference": "d7eb39ed7802473094bc75029c4fed55a38d1d24"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/broadcasting/zipball/d7eb39ed7802473094bc75029c4fed55a38d1d24",
+            "reference": "d7eb39ed7802473094bc75029c4fed55a38d1d24",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "suggest": {
+            "pusher/pusher-php-server": "Required to use the Pusher broadcast driver (~2.0)."
+        },
+        "time": "2015-12-24 14:23:14",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Broadcasting\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Broadcasting package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/pipeline",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/pipeline.git",
+            "reference": "0c97454ca225d35e530f94624654b1a25577cb1c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/pipeline/zipball/0c97454ca225d35e530f94624654b1a25577cb1c",
+            "reference": "0c97454ca225d35e530f94624654b1a25577cb1c",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "time": "2016-04-08 04:24:31",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Pipeline\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Pipeline package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/bus",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/bus.git",
+            "reference": "4c45efed0f93e107cd0357d02ac1bbb220b36ba4"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/bus/zipball/4c45efed0f93e107cd0357d02ac1bbb220b36ba4",
+            "reference": "4c45efed0f93e107cd0357d02ac1bbb220b36ba4",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/pipeline": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "time": "2015-12-05 22:11:33",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Bus\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Bus package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/cache",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/cache.git",
+            "reference": "257b577d042c4242d5cc74af40a544136768d856"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/cache/zipball/257b577d042c4242d5cc74af40a544136768d856",
+            "reference": "257b577d042c4242d5cc74af40a544136768d856",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "nesbot/carbon": "~1.20",
+            "php": ">=5.5.9"
+        },
+        "suggest": {
+            "illuminate/database": "Required to use the database cache driver (5.2.*).",
+            "illuminate/filesystem": "Required to use the file cache driver (5.2.*).",
+            "illuminate/redis": "Required to use the redis cache driver (5.2.*)."
+        },
+        "time": "2016-06-04 23:26:13",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Cache\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Cache package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/encryption",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/encryption.git",
+            "reference": "bd76d4c6b5a2cddbd47ae0b70518613086b2f410"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/encryption/zipball/bd76d4c6b5a2cddbd47ae0b70518613086b2f410",
+            "reference": "bd76d4c6b5a2cddbd47ae0b70518613086b2f410",
+            "shasum": ""
+        },
+        "require": {
+            "ext-mbstring": "*",
+            "ext-openssl": "*",
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "paragonie/random_compat": "~1.4",
+            "php": ">=5.5.9"
+        },
+        "time": "2016-04-25 01:08:38",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Encryption\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Encryption package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/hashing",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/hashing.git",
+            "reference": "be191f14432c801d15a4865a52c70f30aeb0212c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/hashing/zipball/be191f14432c801d15a4865a52c70f30aeb0212c",
+            "reference": "be191f14432c801d15a4865a52c70f30aeb0212c",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "time": "2015-11-30 19:26:21",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Hashing\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Hashing package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/pagination",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/pagination.git",
+            "reference": "55024b578ed3608ad6184bc4e4d7a79f03fb9a48"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/pagination/zipball/55024b578ed3608ad6184bc4e4d7a79f03fb9a48",
+            "reference": "55024b578ed3608ad6184bc4e4d7a79f03fb9a48",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "time": "2016-05-30 02:43:18",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Pagination\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Pagination package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/container",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/container.git",
+            "reference": "7ec395833738b9059f829348ddc9a59d0118ac88"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/container/zipball/7ec395833738b9059f829348ddc9a59d0118ac88",
+            "reference": "7ec395833738b9059f829348ddc9a59d0118ac88",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "time": "2016-05-29 02:18:23",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Container\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Container package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/console",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/console.git",
+            "reference": "21c651991b66f4fe739e27f6d2cdacdc7c08ec1c"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/console/zipball/21c651991b66f4fe739e27f6d2cdacdc7c08ec1c",
+            "reference": "21c651991b66f4fe739e27f6d2cdacdc7c08ec1c",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "nesbot/carbon": "~1.20",
+            "php": ">=5.5.9",
+            "symfony/console": "2.8.*|3.0.*"
+        },
+        "suggest": {
+            "guzzlehttp/guzzle": "Required to use the ping methods on schedules (~5.3|~6.0).",
+            "mtdowling/cron-expression": "Required to use scheduling component (~1.0).",
+            "symfony/process": "Required to use scheduling component (2.8.*|3.0.*)."
+        },
+        "time": "2016-06-09 01:54:11",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Console\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Console package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/queue",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/queue.git",
+            "reference": "4e05c2184618e08273e8c159a6345a85bcff7b1a"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/queue/zipball/4e05c2184618e08273e8c159a6345a85bcff7b1a",
+            "reference": "4e05c2184618e08273e8c159a6345a85bcff7b1a",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/console": "5.2.*",
+            "illuminate/container": "5.2.*",
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "nesbot/carbon": "~1.20",
+            "php": ">=5.5.9",
+            "symfony/debug": "2.8.*|3.0.*",
+            "symfony/process": "2.8.*|3.0.*"
+        },
+        "suggest": {
+            "aws/aws-sdk-php": "Required to use the SQS queue driver (~3.0).",
+            "illuminate/redis": "Required to use the Redis queue driver (5.2.*).",
+            "pda/pheanstalk": "Required to use the Beanstalk queue driver (~3.0)."
+        },
+        "time": "2016-06-09 01:50:28",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Queue\\": ""
+            },
+            "classmap": [
+                "IlluminateQueueClosure.php"
+            ]
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Queue package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/filesystem",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/filesystem.git",
+            "reference": "e9c3ba4fce5853f559f805a5626b18517a55b8b3"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/filesystem/zipball/e9c3ba4fce5853f559f805a5626b18517a55b8b3",
+            "reference": "e9c3ba4fce5853f559f805a5626b18517a55b8b3",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9",
+            "symfony/finder": "2.8.*|3.0.*"
+        },
+        "suggest": {
+            "league/flysystem": "Required to use the Flysystem local and FTP drivers (~1.0).",
+            "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (~1.0).",
+            "league/flysystem-rackspace": "Required to use the Flysystem Rackspace driver (~1.0)."
+        },
+        "time": "2016-05-31 15:08:27",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Filesystem\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Filesystem package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/translation",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/translation.git",
+            "reference": "04aa7985562ae079711a0e46e5fd63db29233adf"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/translation/zipball/04aa7985562ae079711a0e46e5fd63db29233adf",
+            "reference": "04aa7985562ae079711a0e46e5fd63db29233adf",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/filesystem": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9",
+            "symfony/translation": "2.8.*|3.0.*"
+        },
+        "time": "2016-04-21 13:19:18",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Translation\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Translation package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/validation",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/validation.git",
+            "reference": "70b089ce508229b446c85e0143e48dc0eed90c15"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/validation/zipball/70b089ce508229b446c85e0143e48dc0eed90c15",
+            "reference": "70b089ce508229b446c85e0143e48dc0eed90c15",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "5.2.*",
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9",
+            "symfony/http-foundation": "2.8.*|3.0.*",
+            "symfony/translation": "2.8.*|3.0.*"
+        },
+        "suggest": {
+            "illuminate/database": "Required to use the database presence verifier (5.2.*)."
+        },
+        "time": "2016-06-03 13:17:37",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Validation\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Validation package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/events",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/events.git",
+            "reference": "5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/events/zipball/5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b",
+            "reference": "5a5e5d72bf3a2d01d8b15e89440026a60bc4a81b",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "5.2.*",
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "time": "2016-01-01 01:00:19",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Events\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Events package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/view",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/view.git",
+            "reference": "459795e5ba447d674eae03bfb2f9bc3c6206d424"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/view/zipball/459795e5ba447d674eae03bfb2f9bc3c6206d424",
+            "reference": "459795e5ba447d674eae03bfb2f9bc3c6206d424",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "5.2.*",
+            "illuminate/contracts": "5.2.*",
+            "illuminate/events": "5.2.*",
+            "illuminate/filesystem": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9",
+            "symfony/debug": "2.8.*|3.0.*"
+        },
+        "time": "2016-05-28 21:20:12",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\View\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate View package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/config",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/config.git",
+            "reference": "29d25fa086eac092a54859b3cbf7580299fc101e"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/config/zipball/29d25fa086eac092a54859b3cbf7580299fc101e",
+            "reference": "29d25fa086eac092a54859b3cbf7580299fc101e",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/contracts": "5.2.*",
+            "illuminate/filesystem": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "php": ">=5.5.9"
+        },
+        "time": "2015-06-22 20:36:58",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Config\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Config package.",
+        "homepage": "http://laravel.com"
+    },
+    {
+        "name": "illuminate/database",
+        "version": "v5.2.37",
+        "version_normalized": "5.2.37.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/illuminate/database.git",
+            "reference": "c0746930dc6a6ff9b72945152609d61a3b3829c6"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/illuminate/database/zipball/c0746930dc6a6ff9b72945152609d61a3b3829c6",
+            "reference": "c0746930dc6a6ff9b72945152609d61a3b3829c6",
+            "shasum": ""
+        },
+        "require": {
+            "illuminate/container": "5.2.*",
+            "illuminate/contracts": "5.2.*",
+            "illuminate/support": "5.2.*",
+            "nesbot/carbon": "~1.20",
+            "php": ">=5.5.9"
+        },
+        "suggest": {
+            "doctrine/dbal": "Required to rename columns and drop SQLite columns (~2.4).",
+            "fzaninotto/faker": "Required to use the eloquent factory builder (~1.4).",
+            "illuminate/console": "Required to use the database commands (5.2.*).",
+            "illuminate/events": "Required to use the observers with Eloquent (5.2.*).",
+            "illuminate/filesystem": "Required to use the migrations (5.2.*).",
+            "illuminate/pagination": "Required to paginate the result set (5.2.*)."
+        },
+        "time": "2016-06-06 13:12:46",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "5.2-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Illuminate\\Database\\": ""
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "MIT"
+        ],
+        "authors": [
+            {
+                "name": "Taylor Otwell",
+                "email": "taylorotwell@gmail.com"
+            }
+        ],
+        "description": "The Illuminate Database package.",
+        "homepage": "http://laravel.com",
+        "keywords": [
+            "database",
+            "laravel",
+            "orm",
+            "sql"
         ]
     }
 ]

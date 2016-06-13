@@ -302,8 +302,22 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
     );
 
     public static $classMap = array (
-        'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
-        'ExampleTest' => __DIR__ . '/../..' . '/tests/ExampleTest.php',
+        'CreateOauthAccessTokenScopesTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111657_create_oauth_access_token_scopes_table.php',
+        'CreateOauthAccessTokensTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111518_create_oauth_access_tokens_table.php',
+        'CreateOauthAuthCodeScopesTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111403_create_oauth_auth_code_scopes_table.php',
+        'CreateOauthAuthCodesTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111254_create_oauth_auth_codes_table.php',
+        'CreateOauthClientEndpointsTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110557_create_oauth_client_endpoints_table.php',
+        'CreateOauthClientGrantsTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110817_create_oauth_client_grants_table.php',
+        'CreateOauthClientScopesTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110705_create_oauth_client_scopes_table.php',
+        'CreateOauthClientsTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110459_create_oauth_clients_table.php',
+        'CreateOauthGrantScopesTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110403_create_oauth_grant_scopes_table.php',
+        'CreateOauthGrantsTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110304_create_oauth_grants_table.php',
+        'CreateOauthRefreshTokensTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111810_create_oauth_refresh_tokens_table.php',
+        'CreateOauthScopesTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110151_create_oauth_scopes_table.php',
+        'CreateOauthSessionScopesTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111109_create_oauth_session_scopes_table.php',
+        'CreateOauthSessionsTable' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111002_create_oauth_sessions_table.php',
+        'DatabaseSeeder' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/seeds/DatabaseSeeder.php',
+        'ExampleTest' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/tests/ExampleTest.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
@@ -739,7 +753,7 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         'SebastianBergmann\\RecursionContext\\Exception' => __DIR__ . '/..' . '/sebastian/recursion-context/src/Exception.php',
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
-        'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
+        'TestCase' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
     );
 

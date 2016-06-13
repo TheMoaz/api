@@ -6,8 +6,22 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
-    'ExampleTest' => $baseDir . '/tests/ExampleTest.php',
+    'CreateOauthAccessTokenScopesTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111657_create_oauth_access_token_scopes_table.php',
+    'CreateOauthAccessTokensTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111518_create_oauth_access_tokens_table.php',
+    'CreateOauthAuthCodeScopesTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111403_create_oauth_auth_code_scopes_table.php',
+    'CreateOauthAuthCodesTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111254_create_oauth_auth_codes_table.php',
+    'CreateOauthClientEndpointsTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110557_create_oauth_client_endpoints_table.php',
+    'CreateOauthClientGrantsTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110817_create_oauth_client_grants_table.php',
+    'CreateOauthClientScopesTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110705_create_oauth_client_scopes_table.php',
+    'CreateOauthClientsTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110459_create_oauth_clients_table.php',
+    'CreateOauthGrantScopesTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110403_create_oauth_grant_scopes_table.php',
+    'CreateOauthGrantsTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110304_create_oauth_grants_table.php',
+    'CreateOauthRefreshTokensTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111810_create_oauth_refresh_tokens_table.php',
+    'CreateOauthScopesTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_110151_create_oauth_scopes_table.php',
+    'CreateOauthSessionScopesTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111109_create_oauth_session_scopes_table.php',
+    'CreateOauthSessionsTable' => $baseDir . '/../../../web/skillbazaar/api/database/migrations/2014_04_24_111002_create_oauth_sessions_table.php',
+    'DatabaseSeeder' => $baseDir . '/../../../web/skillbazaar/api/database/seeds/DatabaseSeeder.php',
+    'ExampleTest' => $baseDir . '/../../../web/skillbazaar/api/tests/ExampleTest.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
@@ -443,6 +457,6 @@ return array(
     'SebastianBergmann\\RecursionContext\\Exception' => $vendorDir . '/sebastian/recursion-context/src/Exception.php',
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
-    'TestCase' => $baseDir . '/tests/TestCase.php',
+    'TestCase' => $baseDir . '/../../../web/skillbazaar/api/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
 );

@@ -63,7 +63,7 @@ $app->singleton(
 */
 
 // $app->middleware([
-//    App\Http\Middleware\ExampleMiddleware::class
+//    App\Http\Middleware\ThrottleRequests::class
 // ]);
 
 // $app->routeMiddleware([
