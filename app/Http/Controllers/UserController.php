@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use DB;
 use App\User;
+use App\Profile;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -63,29 +65,74 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name'          => 'required',
-            'phone'         => 'required|regex:@\+92\d{10}@|unique:users,phone',
-            'code'          => 'required|regex:@\d{6}@',
-            'merchant_id'   => 'required|regex:@\+92\d{10}@',
-            'provider'      => 'required',
+            'name'              => 'required|string|min:5|max:100',
+            'phone'             => 'required|regex:@\+\d{8,15}@|unique:users,phone',
+            'merchant_phone'    => 'required|regex:@\+\d{8,15}@',
         ]);
 
-        $user = User::create([
-            'phone'         => $request->phone,
-            'password'      => bcrypt($request->code),
-            'provider_id'   => $request->provider_id,
-            'provider'      => $request->provider,
-            'active'        => 1, 
-        ]);
+        $merchant = User::merchants()->where('phone', $request->merchant_phone)->first(); 
 
-        $profile = Profile::create([
-            'user_id'           => $user->user_id,
-            'phone_verified'    => 1,
-            'added_by'          => $reqeust->provider_id,
-        ]);
+        if ($merchant)
+        {
+            try
+            {
+                DB::beginTransaction();
 
-        $user = User::create($request->all());
-        return response()->json($user);
+                $auth_code = mt_rand(100000, 999999);
+
+                $user = User::create([
+                    'name'          => $request->name,
+                    'phone'         => $request->phone,
+                    'password'      => \Illuminate\Support\Facades\Crypt::encrypt($auth_code),
+                    'provider'      => 'Phone',
+                    'confirm_code'  => $auth_code, 
+                ]);
+
+                $profile = Profile::create([
+                    'user_id'           => $user->user_id,
+                    'phone_verified'    => 1,
+                    'added_by'          => $merchant->user_id,
+                ]);
+
+                DB::commit();
+
+                return response()->json($user);
+            }
+            catch (Exception $e)
+            {
+                return $e; 
+            }
+        }
+        else
+        {
+            return response(array('message'=>'Merchant Not Found'), 404); 
+        }
+    }
+
+    /**
+     * Verify a newly created member (User)
+     *
+     * @param  request  $request
+     * @return object
+     */
+    public function verify(Request $request, $id)
+    {
+        $this->validate($request, [
+            'auth_code' => 'required|regex:@\d{6}@'
+        ]); 
+
+        $user = User::members()->where('user_id', $id)->where('confirm_code', $request->auth_code)->first();
+
+        if ($user)
+        {
+            $user->active = 1;
+            $user->confirm_code = null;
+            $user->save();
+
+            return response()->json($user); 
+        }
+
+        return response(array('message'=>'Not Found'), 404);
     }
 
     /**
@@ -131,7 +178,7 @@ class UserController extends Controller
         $this->validate($request, [
             'phone'             => 'regex:@\+\d{8,15}@|unique:users,phone',
             'email'             => 'email|unique:users,email',
-            'auth_code'         => 'required|regex:@\d{6}@',
+            'auth_code'         => 'required|regex:@\d{6}@|exists:users,confirm_code',
             'merchant_phone'    => 'required|regex:@\+\d{8,15}@',
         ]);
            

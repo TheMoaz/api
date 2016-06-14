@@ -29,6 +29,7 @@ class Common
      */
     public static function sendSMS($phone, $message)
     {
+        return true; 
         $cell = \App\Libraries\Common::format_phone($phone);
 
         //$config = config('services.twilio');
