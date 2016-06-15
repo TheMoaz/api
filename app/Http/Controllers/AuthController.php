@@ -71,4 +71,13 @@ class AuthController extends Controller
 
         }
     }
+
+    public function postPwdHash(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required',
+        ]);
+
+        return app('hash')->make($request->password);
+    }
 }

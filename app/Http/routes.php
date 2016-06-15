@@ -17,6 +17,7 @@ $app->get('/', function () use ($app) {
 
 $app->post('login', 'AuthController@postLogin');
 $app->post('logout', 'AuthController@postLogout');
+$app->post('pwdhash', 'AuthController@postPwdHash');
 
 $app->group(['namespace' => 'App\Http\Controllers', 'middleware' => ['auth:api', 'history'], 'prefix' => 'v1'], function () use ($app) {
 
