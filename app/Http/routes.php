@@ -11,11 +11,14 @@
 |
 */
 
-// $app->get('/', function () use ($app) {
-//     return $app->version();
-// });
+$app->get('/', function () use ($app) {
+    return $app->version();
+});
 
-$app->group(['namespace' => 'App\Http\Controllers', 'prefix' => 'v1'], function () use ($app) {
+$app->post('login', 'AuthController@postLogin');
+$app->post('logout', 'AuthController@postLogout');
+
+$app->group(['namespace' => 'App\Http\Controllers', 'middleware' => ['auth:api', 'history'], 'prefix' => 'v1'], function () use ($app) {
 
 	$app->post(	'users/add',			'UserController@store');	// Submit add request
 	$app->post(	'users/{id}/verify',	'UserController@verify');	// Verify authorization code
@@ -35,5 +38,9 @@ $app->group(['namespace' => 'App\Http\Controllers', 'prefix' => 'v1'], function 
 	$app->put(	'merchants/{id}/edit', 	'MerchantController@update');
 	$app->get(	'merchants/{id}', 		'MerchantController@show');
 	$app->get(	'merchants', 			'MerchantController@index');
+
+});
+
+$app->group(['namespace' => 'App\Http\Controllers', 'middleware' => ['auth', 'history'], 'prefix' => 'v2'], function () use ($app) {
 
 });

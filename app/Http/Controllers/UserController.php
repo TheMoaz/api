@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use DB;
+use Auth;
 use App\User;
 use App\Profile;
 use Illuminate\Http\Request;
@@ -16,8 +17,7 @@ class UserController extends Controller
      */
     public function __construct()
     {
-        //$this->middleware('auth');
-        //$this->middleware('oauth');
+        $this->middleware('auth:api');
     }
 
     /**
@@ -27,6 +27,7 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
+        return \Auth::user();
         if ($request->has('page'))
         {
             $users = User::members()->orderBy('user_id', 'desc')->skip($request->page*10)->take(10)->get();

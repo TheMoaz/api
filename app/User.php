@@ -7,8 +7,9 @@ use Laravel\Lumen\Auth\Authorizable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Model implements AuthenticatableContract, AuthorizableContract
+class User extends Model implements JWTSubject, AuthenticatableContract, AuthorizableContract
 {
     use Authenticatable, Authorizable;
 
@@ -27,12 +28,21 @@ class User extends Model implements AuthenticatableContract, AuthorizableContrac
     protected $fillable = ['provider_id', 'name', 'email', 'phone', 'password', 'provider', 'avatar', 'confirm_code', 'active', 'role'];
 
     /**
-     * The attributes that are hidden from view.
+     * The attributes excluded from the model's JSON form.
      *
      * @var array
      */
     protected $hidden = ['provider_id', 'password', 'confirm_code', 'remember_token','summary', 'designation']; 
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
 
     public function profile()

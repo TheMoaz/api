@@ -62,13 +62,14 @@ $app->singleton(
 |
 */
 
-// $app->middleware([
-//    App\Http\Middleware\ThrottleRequests::class
-// ]);
+$app->middleware([
+   // App\Http\Middleware\ThrottleRequests::class
+]);
 
-// $app->routeMiddleware([
-//     'auth' => App\Http\Middleware\Authenticate::class,
-// ]);
+$app->routeMiddleware([
+    'auth'      => App\Http\Middleware\Authenticate::class,
+    'history'   => App\Http\Middleware\HistoryMiddleware::class,
+]);
 
 /*
 |--------------------------------------------------------------------------
@@ -84,6 +85,7 @@ $app->singleton(
 // $app->register(App\Providers\AppServiceProvider::class);
 // $app->register(App\Providers\AuthServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 
 /*
 |--------------------------------------------------------------------------

@@ -25,6 +25,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'T' => 
+        array (
+            'Tymon\\JWTAuth\\' => 14,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Util\\' => 22,
@@ -40,6 +44,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Console\\' => 26,
         ),
+        'N' => 
+        array (
+            'Namshi\\JOSE\\' => 12,
+        ),
         'M' => 
         array (
             'Monolog\\' => 8,
@@ -50,6 +58,7 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         ),
         'I' => 
         array (
+            'Irazasyed\\JwtAuthGuard\\' => 23,
             'Illuminate\\View\\' => 16,
             'Illuminate\\Validation\\' => 22,
             'Illuminate\\Translation\\' => 23,
@@ -89,6 +98,7 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         ),
         'A' => 
         array (
+            'Arubacao\\BasicAuth\\' => 19,
             'App\\' => 4,
         ),
     );
@@ -103,6 +113,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
+        ),
+        'Tymon\\JWTAuth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/tymon/jwt-auth/src',
         ),
         'Symfony\\Polyfill\\Util\\' => 
         array (
@@ -152,6 +166,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Namshi\\JOSE\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE',
+        ),
         'Monolog\\' => 
         array (
             0 => __DIR__ . '/..' . '/monolog/monolog/src/Monolog',
@@ -159,6 +177,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         'Laravel\\Lumen\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/lumen-framework/src',
+        ),
+        'Irazasyed\\JwtAuthGuard\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/irazasyed/jwt-auth-guard/src',
         ),
         'Illuminate\\View\\' => 
         array (
@@ -267,6 +289,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
+        ),
+        'Arubacao\\BasicAuth\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/arubacao/http-basic-auth-guard/src',
         ),
         'App\\' => 
         array (
