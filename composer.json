@@ -9,8 +9,7 @@
         "laravel/lumen-framework": "5.2.*",
         "vlucas/phpdotenv": "~2.2",
         "twilio/sdk": "^4.8",
-        "tymon/jwt-auth": "^1.0@dev",
-        "irazasyed/jwt-auth-guard": "^1.0"
+        "tymon/jwt-auth": "^1.0@dev"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",

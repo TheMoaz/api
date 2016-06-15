@@ -58,7 +58,6 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         ),
         'I' => 
         array (
-            'Irazasyed\\JwtAuthGuard\\' => 23,
             'Illuminate\\View\\' => 16,
             'Illuminate\\Validation\\' => 22,
             'Illuminate\\Translation\\' => 23,
@@ -98,7 +97,6 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         ),
         'A' => 
         array (
-            'Arubacao\\BasicAuth\\' => 19,
             'App\\' => 4,
         ),
     );
@@ -177,10 +175,6 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         'Laravel\\Lumen\\' => 
         array (
             0 => __DIR__ . '/..' . '/laravel/lumen-framework/src',
-        ),
-        'Irazasyed\\JwtAuthGuard\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/irazasyed/jwt-auth-guard/src',
         ),
         'Illuminate\\View\\' => 
         array (
@@ -289,10 +283,6 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         'Carbon\\' => 
         array (
             0 => __DIR__ . '/..' . '/nesbot/carbon/src/Carbon',
-        ),
-        'Arubacao\\BasicAuth\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/arubacao/http-basic-auth-guard/src',
         ),
         'App\\' => 
         array (
