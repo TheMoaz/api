@@ -11,15 +11,25 @@
 |
 */
 
-$app->get('/', function () use ($app) {
-    return $app->version();
+$app->group(['namespace' => 'App\Http\Controllers'], function () use ($app) {
+
+	$app->get(	'/', 'HomeController@index');
+
 });
 
-$app->post('login', 'AuthController@postLogin');
-$app->post('logout', 'AuthController@postLogout');
-$app->post('pwdhash', 'AuthController@postPwdHash');
+$app->group(['namespace' => 'App\Http\Controllers', 'prefix' => 'auth'], function () use ($app) {
 
-$app->group(['namespace' => 'App\Http\Controllers', 'middleware' => ['auth:api', 'history'], 'prefix' => 'v1'], function () use ($app) {
+	$app->post(	'register', 		'AuthController@postSignup');
+	$app->post(	'{id}/{verify}', 	'AuthController@postVerify');
+	$app->post(	'login', 			'AuthController@postLogin');
+	$app->post(	'pwdhash', 			'AuthController@postPasswordHash');
+
+	$app->post(	'reset', 	['middleware' => 'auth:api', 'uses' => 'AuthController@postResetPassword']);
+	$app->get(	'user', 	['middleware' => 'auth:api', 'uses' => 'AuthController@getAuthenticatedUser']);
+	$app->post(	'logout', 	['middleware' => 'auth:api', 'uses' => 'AuthController@postLogout']);
+}); 
+
+$app->group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth:api', 'prefix' => 'v1'], function () use ($app) {
 
 	$app->post(	'users/add',			'UserController@store');	// Submit add request
 	$app->post(	'users/{id}/verify',	'UserController@verify');	// Verify authorization code

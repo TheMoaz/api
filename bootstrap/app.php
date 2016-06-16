@@ -63,12 +63,12 @@ $app->singleton(
 */
 
 $app->middleware([
-   // App\Http\Middleware\ThrottleRequests::class
+    // App\Http\Middleware\ThrottleRequests::class,
+    App\Http\Middleware\HistoryMiddleware::class,
 ]);
 
 $app->routeMiddleware([
     'auth'      => App\Http\Middleware\Authenticate::class,
-    'history'   => App\Http\Middleware\HistoryMiddleware::class,
 ]);
 
 /*

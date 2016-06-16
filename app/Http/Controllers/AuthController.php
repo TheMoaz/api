@@ -18,16 +18,46 @@ class AuthController extends Controller
         $this->jwt = $jwt;
     }
 
-    public function postLogin(Request $request)
+    public function postRegister(Request $request)
     {
         $this->validate($request, [
-            'email'    => 'required|email|exists:users,email|max:100',
-            'password' => 'required',
+            'name'      => 'required|string|max:100',
+            'email'     => 'required|email|unique:users,email|max:100'
         ]);
+    }
+
+    public function postLogin(Request $request)
+    {
+        // 
+        // Check if entered identity is email or phone
+        //
+        $field = filter_var($request->input('identity'), FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+        //
+        // Prepare the validators
+        //
+        if ($field == 'email')
+        {
+            $this->validate($request, [
+                'identity' => 'required|email|exists:users,email|min:5|max:100',
+                'password' => 'required|string|min:5|max:100',
+            ]);
+        }
+        else
+        {
+            $this->validate($request, [
+                'identity' => 'required|regex:@\+\d{8,15}@|exists:users,phone|min:5|max:100',
+                'password' => 'required|string|min:5|max:100',
+            ]);
+        }
 
         try {
 
-            if (! $token = $this->jwt->attempt($request->only('email', 'password'))) 
+            $attempt = array(
+                $field => $request->input('identity'), 
+                'password' => $request->input('password')
+            );
+
+            if (! $token = $this->jwt->attempt($attempt)) 
             {
                 return response()->json(['message' => 'Not Found'], 404);
             }
@@ -55,7 +85,7 @@ class AuthController extends Controller
         {
             \Auth::logout();
 
-            return response()->json(['message' => 'Session terminated'], 200);
+            return response()->json(['message' => 'Token unauthorized'], 200);
 
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
 
@@ -72,12 +102,22 @@ class AuthController extends Controller
         }
     }
 
-    public function postPwdHash(Request $request)
+    public function postPasswordHash(Request $request)
     {
         $this->validate($request, [
             'password' => 'required',
         ]);
 
         return app('hash')->make($request->password);
+    }
+
+    public function postResetPassword(Request $request)
+    {
+
+    }
+
+    public function getAuthenticatedUser(Request $request)
+    {
+        return \Auth::user();
     }
 }

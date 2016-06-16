@@ -11,12 +11,13 @@ class History extends Model
      *
      * @var string
      */
-    protected $table = 'history';
+    protected $table = 'logs';
 
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'activity_id', 'target_id'];
+    protected $fillable = ['log_user', 'log_method', 'log_path', 'log_ip', 'log_agent', 'log_input'];
+
 }
