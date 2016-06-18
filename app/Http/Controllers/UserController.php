@@ -38,7 +38,7 @@ class UserController extends Controller
 
         if (count($users)) return response()->json($users);
 
-        return response(array('message'=>'Not Found'), 404);
+        return response()->json(['message'=>'Not Found'], 404);
     }
 
     /**
@@ -51,9 +51,9 @@ class UserController extends Controller
     {
         $user = User::members()->find($id);
 
-        if (count($user)) return response()->json($user);
+        if ($user) return response()->json($user);
 
-        return response(array('message'=>'Not Found'), 404);
+        return response()->json(['message'=>'Not Found'], 404);
     }
 
     /**
@@ -72,7 +72,7 @@ class UserController extends Controller
 
         $merchant = User::merchants()->where('phone', $request->merchant_phone)->first(); 
 
-        if ($merchant)
+        if ($merchant && $merchant->user_id === Auth::user()->user_id)
         {
             try
             {
@@ -105,7 +105,7 @@ class UserController extends Controller
         }
         else
         {
-            return response(array('message'=>'Merchant Not Found'), 404); 
+            return response()->json(['message'=>'Not Found'], 404);
         }
     }
 
@@ -132,7 +132,7 @@ class UserController extends Controller
             return response()->json($user); 
         }
 
-        return response(array('message'=>'Not Found'), 404);
+        return response()->json(['message'=>'Not Found'], 404);
     }
 
     /**
@@ -177,7 +177,7 @@ class UserController extends Controller
     {
         $this->validate($request, [
             'phone'             => 'regex:@\+\d{8,15}@|unique:users,phone',
-            'email'             => 'email|unique:users,email',
+            'email'             => 'email|unique:users,email,'.$id.',user_id',
             'auth_code'         => 'required|regex:@\d{6}@|exists:users,confirm_code',
             'merchant_phone'    => 'required|regex:@\+\d{8,15}@',
         ]);

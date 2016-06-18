@@ -34,4 +34,5 @@ class HomeController extends Controller
 
         return response()->json($functions);
     }
+
 }

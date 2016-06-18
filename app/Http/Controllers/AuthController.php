@@ -18,14 +18,6 @@ class AuthController extends Controller
         $this->jwt = $jwt;
     }
 
-    public function postRegister(Request $request)
-    {
-        $this->validate($request, [
-            'name'      => 'required|string|max:100',
-            'email'     => 'required|email|unique:users,email|max:100'
-        ]);
-    }
-
     public function postLogin(Request $request)
     {
         // 

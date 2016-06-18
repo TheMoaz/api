@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Support\Facades\Crypt;
+use Auth;
+use App\Log;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Crypt;
 
 class MerchantController extends Controller
 {
@@ -130,5 +132,29 @@ class MerchantController extends Controller
         }
 
         return response(array('message'=>'Not Found'), 404);
+    }
+
+    /**
+     * Show activity log of merchant
+     *
+     * @param  request  $request
+     * @param  integer  $id
+     * @return object
+     */
+    public function log(Request $request, int $id)
+    {
+        $user = User::merchants()->find($id);
+
+        if ($user)
+        {
+            if (Auth::user()->can('view_merchant_logs', $user)) 
+            {
+                return Log::merchants($id)->limit(10)->orderBy('created_at', 'desc')->get();
+            }
+
+            return response()->json(['message' => 'Forbidden'], 403);
+        }
+
+        return response()->json(['message' => 'Not Found'], 404);
     }
 }

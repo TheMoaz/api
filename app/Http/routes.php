@@ -11,9 +11,12 @@
 |
 */
 
-$app->group(['namespace' => 'App\Http\Controllers'], function () use ($app) {
+$app->get(	'/', 'HomeController@index');
 
-	$app->get(	'/', 'HomeController@index');
+$app->group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth:api', 'prefix' => 'logs'], function () use ($app) {
+	
+	$app->get(	'/', 				'LogController@index');
+	$app->get(	'{id}', 			'LogController@getUserLog');
 
 });
 
@@ -47,6 +50,7 @@ $app->group(['namespace' => 'App\Http\Controllers', 'middleware' => 'auth:api', 
 	$app->post(	'merchants/add',		'MerchantController@store');
 	$app->post(	'merchants/verify',		'MerchantController@verify');
 	$app->put(	'merchants/{id}/edit', 	'MerchantController@update');
+	$app->get(	'merchants/{id}/log', 	'MerchantController@log');
 	$app->get(	'merchants/{id}', 		'MerchantController@show');
 	$app->get(	'merchants', 			'MerchantController@index');
 
