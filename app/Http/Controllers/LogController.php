@@ -48,7 +48,7 @@ class LogController extends Controller
         {
             if (Auth::user()->can('view_all_logs', $user)) 
             {
-                return Log::user($id)->limit(10)->orderBy('created_at', 'desc')->get();
+                return Log::users($id)->limit(10)->orderBy('created_at', 'desc')->get();
             }
 
             return response()->json(['message' => 'Forbidden'], 403);
