@@ -40,7 +40,7 @@ class LogController extends Controller
         return response()->json(['message' => 'Forbidden'], 403);
     }
 
-    public function getUserLog(Request $request, int $id)
+    public function getUserLog(Request $request, $id)
     {
         $user = User::find($id);
 
