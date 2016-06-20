@@ -141,7 +141,7 @@ class MerchantController extends Controller
      * @param  integer  $id
      * @return object
      */
-    public function log(Request $request, int $id)
+    public function log(Request $request, $id)
     {
         $user = User::merchants()->find($id);
 
