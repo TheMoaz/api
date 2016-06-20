@@ -19,8 +19,7 @@ class UserPolicy
 
     public function view_merchant_logs(User $user, User $member)
     {
-        return  $user->role === 'Admin' || 
-                $user->role === 'Provider' || 
-                $user->user_id === $member->user_id;
+        return  ($user->role === 'Admin' || $user->role === 'Provider') && 
+                ($user->provider === $member->provider);
     }
 }
