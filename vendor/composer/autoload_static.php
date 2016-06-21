@@ -11,9 +11,13 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
         '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
         'bd9634f2d41831496de0d3dfe4c94881' => __DIR__ . '/..' . '/symfony/polyfill-php56/bootstrap.php',
+        '2c102faa651ef8ea5874edb585946bce' => __DIR__ . '/..' . '/swiftmailer/swiftmailer/lib/swift_required.php',
         '253c157292f75eb38082b5acb06f3f01' => __DIR__ . '/..' . '/nikic/fast-route/src/functions.php',
+        'c964ee0ededf28c96ebd9db5099ef910' => __DIR__ . '/..' . '/guzzlehttp/promises/src/functions_include.php',
+        'a0edc8309cc5e1d60e3047b5df6b7052' => __DIR__ . '/..' . '/guzzlehttp/psr7/src/functions_include.php',
         'bee9632da3ca00a99623b9c35d0c4f8b' => __DIR__ . '/..' . '/laravel/lumen-framework/src/helpers.php',
         'bccfaf6207f67190a92f35585e9a78b2' => __DIR__ . '/..' . '/twilio/sdk/Services/Twilio.php',
+        '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
     );
 
     public static $prefixLengthsPsr4 = array (
@@ -44,6 +48,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
             'Symfony\\Component\\Debug\\' => 24,
             'Symfony\\Component\\Console\\' => 26,
         ),
+        'P' => 
+        array (
+            'Psr\\Http\\Message\\' => 17,
+        ),
         'N' => 
         array (
             'Namshi\\JOSE\\' => 12,
@@ -66,6 +74,7 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
             'Illuminate\\Queue\\' => 17,
             'Illuminate\\Pipeline\\' => 20,
             'Illuminate\\Pagination\\' => 22,
+            'Illuminate\\Mail\\' => 16,
             'Illuminate\\Http\\' => 16,
             'Illuminate\\Hashing\\' => 19,
             'Illuminate\\Filesystem\\' => 22,
@@ -80,6 +89,13 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
             'Illuminate\\Bus\\' => 15,
             'Illuminate\\Broadcasting\\' => 24,
             'Illuminate\\Auth\\' => 16,
+        ),
+        'G' => 
+        array (
+            'GuzzleHttp\\Psr7\\' => 16,
+            'GuzzleHttp\\Promise\\' => 19,
+            'GuzzleHttp\\' => 11,
+            'GrahamCampbell\\Throttle\\' => 24,
         ),
         'F' => 
         array (
@@ -164,6 +180,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         array (
             0 => __DIR__ . '/..' . '/symfony/console',
         ),
+        'Psr\\Http\\Message\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/http-message/src',
+        ),
         'Namshi\\JOSE\\' => 
         array (
             0 => __DIR__ . '/..' . '/namshi/jose/src/Namshi/JOSE',
@@ -207,6 +227,10 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         'Illuminate\\Pagination\\' => 
         array (
             0 => __DIR__ . '/..' . '/illuminate/pagination',
+        ),
+        'Illuminate\\Mail\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/mail',
         ),
         'Illuminate\\Http\\' => 
         array (
@@ -264,6 +288,22 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         array (
             0 => __DIR__ . '/..' . '/illuminate/auth',
         ),
+        'GuzzleHttp\\Psr7\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/psr7/src',
+        ),
+        'GuzzleHttp\\Promise\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/promises/src',
+        ),
+        'GuzzleHttp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
+        ),
+        'GrahamCampbell\\Throttle\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/graham-campbell/throttle/src',
+        ),
         'FastRoute\\' => 
         array (
             0 => __DIR__ . '/..' . '/nikic/fast-route/src',
@@ -319,8 +359,8 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
     );
 
     public static $classMap = array (
-        'DatabaseSeeder' => __DIR__ . '/../..' . '/database/seeds/DatabaseSeeder.php',
-        'ExampleTest' => __DIR__ . '/../..' . '/tests/ExampleTest.php',
+        'DatabaseSeeder' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/database/seeds/DatabaseSeeder.php',
+        'ExampleTest' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/tests/ExampleTest.php',
         'File_Iterator' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Iterator.php',
         'File_Iterator_Facade' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Facade.php',
         'File_Iterator_Factory' => __DIR__ . '/..' . '/phpunit/php-file-iterator/src/Factory.php',
@@ -756,7 +796,7 @@ class ComposerStaticInitfd6513ebde11b8f486329cdc6d2511ba
         'SebastianBergmann\\RecursionContext\\Exception' => __DIR__ . '/..' . '/sebastian/recursion-context/src/Exception.php',
         'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => __DIR__ . '/..' . '/sebastian/recursion-context/src/InvalidArgumentException.php',
         'SebastianBergmann\\Version' => __DIR__ . '/..' . '/sebastian/version/src/Version.php',
-        'TestCase' => __DIR__ . '/../..' . '/tests/TestCase.php',
+        'TestCase' => __DIR__ . '/../..' . '/../../../web/skillbazaar/api/tests/TestCase.php',
         'Text_Template' => __DIR__ . '/..' . '/phpunit/php-text-template/src/Template.php',
     );
 

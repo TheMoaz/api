@@ -18,14 +18,7 @@ class Log extends Model
      *
      * @var array
      */
-    protected $fillable = ['log_user', 'log_method', 'log_path', 'log_ip', 'log_agent', 'log_input', 'log_status','log_response'];
-
-    /**
-     * The attributes excluded from the model's JSON form.
-     *
-     * @var array
-     */
-    protected $hidden = ['log_input', 'log_response', 'log_agent']; 
+    protected $fillable = ['log_user', 'log_method', 'log_path', 'log_ip', 'log_status'];
 
     public function scopeMerchants($query, $id)
     {

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\JWTAuth;
@@ -18,7 +19,13 @@ class AuthController extends Controller
         $this->jwt = $jwt;
     }
 
-    public function postLogin(Request $request)
+    /**
+     * Process incoming login request
+     * @param  string  $identity (email or phone)
+     * @param  string  $password 
+     * @return object
+     */
+    public function login(Request $request)
     {
         // 
         // Check if entered identity is email or phone
@@ -51,7 +58,7 @@ class AuthController extends Controller
 
             if (! $token = $this->jwt->attempt($attempt)) 
             {
-                return response()->json(['message' => 'Not Found'], 404);
+                return response()->json(['message' => 'Bad Request'], 400);
             }
 
         } catch (\Tymon\JWTAuth\Exceptions\TokenExpiredException $e) {
@@ -71,11 +78,80 @@ class AuthController extends Controller
         return response()->json(compact('token'));
     }
 
-    public function postLogout(Request $request)
+    /**
+     * Generates hashed password of input
+     *
+     * @param  string  $password 
+     * @return object
+     */
+    public function pwdhash(Request $request)
+    {
+        $this->validate($request, [
+            'password' => 'required',
+        ]);
+
+        return app('hash')->make($request->password);
+    }
+
+    /**
+     * Returns the authenticated user object
+     * 
+     * @return object
+     */
+    public function show(Request $request)
+    {
+        return response()->json(\Auth::user());
+    }
+
+    /**
+     * Generates a new password and sends confirm_code to registered identity
+     *
+     * @return object
+     */
+    public function reset(Request $request)
+    {
+        $user = Auth::user();
+
+        $auth_code = mt_rand(100000, 999999);
+
+        if ($user->phone)
+        {
+            $message = 'SkillBazaar authorization code: ' . $auth_code; 
+
+            if (\App\Libraries\Common::sendSMS($user->phone, $message))
+            {
+                $user->confirm_code = $auth_code;
+                $user->password = app('hash')->make($auth_code);
+                $user->save();
+
+                return response()->json(['message' => 'Password has been reset'], 200);
+            }
+            return response()->json(['message' => 'Message Not Sent. Try again.'], 500);
+        }
+        else
+        {
+            if (\App\Libraries\Common::sendMail($user, 'Your SkillBazaar password has been reset', $auth_code, 'forgot'))
+            {
+                $user->confirm_code = $auth_code;
+                $user->password = app('hash')->make($auth_code);
+                $user->save();
+
+                return response()->json(['message' => 'Password has been reset'], 200);
+            }
+            return response()->json(['message' => 'Message Not Sent. Try again.'], 500);
+        }
+    }
+
+    /**
+     * De-authorizes the supplied token
+     *
+     * @return object
+     */
+    public function logout(Request $request)
     {
         try
         {
-            \Auth::logout();
+            Auth::logout();
 
             return response()->json(['message' => 'Token unauthorized'], 200);
 
@@ -94,22 +170,6 @@ class AuthController extends Controller
         }
     }
 
-    public function postPasswordHash(Request $request)
-    {
-        $this->validate($request, [
-            'password' => 'required',
-        ]);
 
-        return app('hash')->make($request->password);
-    }
-
-    public function postResetPassword(Request $request)
-    {
-
-    }
-
-    public function getAuthenticatedUser(Request $request)
-    {
-        return \Auth::user();
-    }
+    
 }

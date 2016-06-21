@@ -64,11 +64,11 @@ $app->singleton(
 
 $app->middleware([
     App\Http\Middleware\LoggingMiddleware::class,
-    // App\Http\Middleware\ThrottleRequests::class,
 ]);
 
 $app->routeMiddleware([
     'auth'      => App\Http\Middleware\Authenticate::class,
+    'throttle'  => App\Http\Middleware\ThrottleMiddleware::class,
 ]);
 
 /*
@@ -82,15 +82,21 @@ $app->routeMiddleware([
 |
 */
 
-// $app->register(App\Providers\AppServiceProvider::class);
+$app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
+$app->register(GrahamCampbell\Throttle\ThrottleServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
+$app->register(Illuminate\Mail\MailServiceProvider::class);  
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 // $app->register(Irazasyed\JwtAuthGuard\JwtAuthGuardServiceProvider::class);
 
 // $app->register(Jenssegers\Agent\AgentServiceProvider::class);
 // class_alias('Jenssegers\Agent\AgentServiceProvider', 'Agent');
+// class_alias('GrahamCampbell\Throttle\Facades\Throttle' => 'Throttle');
 
+$app->configure('mail');
+$app->configure('services');
+ 
 /*
 |--------------------------------------------------------------------------
 | Load The Application Routes

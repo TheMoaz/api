@@ -6,8 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
-    'ExampleTest' => $baseDir . '/tests/ExampleTest.php',
+    'DatabaseSeeder' => $baseDir . '/../../../web/skillbazaar/api/database/seeds/DatabaseSeeder.php',
+    'ExampleTest' => $baseDir . '/../../../web/skillbazaar/api/tests/ExampleTest.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',
     'File_Iterator_Facade' => $vendorDir . '/phpunit/php-file-iterator/src/Facade.php',
     'File_Iterator_Factory' => $vendorDir . '/phpunit/php-file-iterator/src/Factory.php',
@@ -443,6 +443,6 @@ return array(
     'SebastianBergmann\\RecursionContext\\Exception' => $vendorDir . '/sebastian/recursion-context/src/Exception.php',
     'SebastianBergmann\\RecursionContext\\InvalidArgumentException' => $vendorDir . '/sebastian/recursion-context/src/InvalidArgumentException.php',
     'SebastianBergmann\\Version' => $vendorDir . '/sebastian/version/src/Version.php',
-    'TestCase' => $baseDir . '/tests/TestCase.php',
+    'TestCase' => $baseDir . '/../../../web/skillbazaar/api/tests/TestCase.php',
     'Text_Template' => $vendorDir . '/phpunit/php-text-template/src/Template.php',
 );

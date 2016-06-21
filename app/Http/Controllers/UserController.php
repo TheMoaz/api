@@ -83,7 +83,7 @@ class UserController extends Controller
                 $user = User::create([
                     'name'          => $request->name,
                     'phone'         => $request->phone,
-                    'password'      => \Illuminate\Support\Facades\Crypt::encrypt($auth_code),
+                    'password'      => app('hash')->make($auth_code),
                     'provider'      => 'Phone',
                     'confirm_code'  => $auth_code, 
                 ]);

@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 
 class LogController extends Controller
 {
-    private $limit = 10;
+    private $limit;
     /**
      * Create a new controller instance.
      *
@@ -18,7 +18,7 @@ class LogController extends Controller
      */
     public function __construct()
     {
-        //
+        $this->limit = env('PER_PAGE', 10);
     }
 
     /**

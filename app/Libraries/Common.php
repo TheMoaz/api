@@ -4,18 +4,22 @@ namespace App\Libraries;
 
 use Services_Twilio;
 use Services_Twilio_RestException;
+use Illuminate\Support\Facades\Mail;
 
 class Common
 {
     /**
-     * Returns a formatted phone number
+     * Returns a sanitized phone number
      * 
      * @param   string  $phone  Phone number to be formatted
      * @return  string          E.164 formatted phone number 
      */
     public static function format_phone($phone)
     {
-        return '+' . preg_replace("/[^0-9]/", '', $phone);   // Strip away everything but numbers; append plus sign 
+        $phone = preg_replace("/[^0-9]/", '', $phone); 
+        $phone = preg_replace("/^0+(?!$)/", '', $phone);
+        
+        return '+' . $phone; 
     }
 
     /**
@@ -29,7 +33,7 @@ class Common
      */
     public static function sendSMS($phone, $message)
     {
-        return true; 
+        // return true; 
         $cell = \App\Libraries\Common::format_phone($phone);
 
         //$config = config('services.twilio');
@@ -48,5 +52,16 @@ class Common
         {
             return $e->getMessage();
         }
+    }
+    /**
+     * Used to send email to specific user
+     */
+    public static function sendMail($user, $subject, $text, $template)
+    {
+        return Mail::send($template, ['name' => $user->name, 'code' => $text], function ($message) use ($user, $subject) 
+        {
+            $message->to($user->email, $user->name);
+            $message->subject($subject);
+        });
     }
 }

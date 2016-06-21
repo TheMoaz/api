@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Auth;
 use App\Log;
 use App\User;
+use App\Common;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Crypt;
 
 class MerchantController extends Controller
 {
+    private $limit;
     /**
      * Create a new controller instance.
      *
@@ -17,7 +19,7 @@ class MerchantController extends Controller
      */
     public function __construct()
     {
-        // $this->middleware('auth');
+        $this->limit = env('PER_PAGE', 10);
     }
 
     /**
@@ -64,28 +66,47 @@ class MerchantController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
-            'name'      => 'required|min:5|max:100', 
-            'phone'     => 'required|unique:users,phone', 
-            'provider'  => 'required',
-        ]);
+        if (Auth::user()->can('add_merchant', Auth::user()))
+        {
+            $this->validate($request, [
+                'name'      => 'required|string|min:5|max:100', 
+                'phone'     => 'required|unique:users,phone'
+            ]);
 
-        $auth_code = mt_rand(100000, 999999);
+            //
+            // Generate 6-digit code; used as password and confirm_code
+            //
+            $auth_code = mt_rand(100000, 999999);
 
-        $user = User::create([
-            'name'          => $request->name,
-            'phone'         => $request->phone,
-            'provider'      => $request->provider,
-            'role'          => 'Merchant',
-            'confirm_code'  => $auth_code, 
-            'password'      => \Illuminate\Support\Facades\Crypt::encrypt($auth_code),
-        ]);
+            try
+            {
+                $user = User::create([
+                    'name'          => $request->name,
+                    'phone'         => \App\Libraries\Common::format_phone($request->phone), 
+                    'provider'      => Auth::user()->provider,
+                    'role'          => 'Merchant',
+                    'active'        => 1, 
+                    'confirm_code'  => $auth_code, 
+                    'password'      => app('hash')->make($auth_code),
+                ]);
 
-        //
-        // SEND SMS TO PHONE NUMBER (To be implemented)
-        //
+                //
+                // Send SMS to phone number
+                //
+                $message = 'Welcome to SkillBazaar. Please use the following code to login to your account: ' . $auth_code; 
 
-        return response()->json($user);
+                if (\App\Libraries\Common::sendSMS($user->phone, $message))
+                {
+                    return response()->json($user, 201);
+                }
+                return response()->json(['message' => 'Error sending SMS.'], 500);
+            }
+            catch (\Illuminate\Database\QueryException $e)
+            {
+                return response()->json(['message' => 'The phone has already been taken.'], 422);
+            }
+        }
+        return response()->json(['message' => 'Forbidden'], 403);
     }
 
     /**
@@ -141,7 +162,7 @@ class MerchantController extends Controller
      * @param  integer  $id
      * @return object
      */
-    public function log(Request $request, $id)
+    public function activity(Request $request, $id)
     {
         $user = User::merchants()->find($id);
 
@@ -149,7 +170,11 @@ class MerchantController extends Controller
         {
             if (Auth::user()->can('view_merchant_logs', $user)) 
             {
-                return Log::merchants($id)->limit(10)->orderBy('created_at', 'desc')->get();
+                if ($request->has('page')) 
+                {
+                    return Log::merchants($id)->skip($request->page*$this->limit)->take($this->limit)->orderBy('created_at', 'desc')->get();
+                }
+                return Log::merchants($id)->take($this->limit)->orderBy('created_at', 'desc')->get();
             }
 
             return response()->json(['message' => 'Forbidden'], 403);
