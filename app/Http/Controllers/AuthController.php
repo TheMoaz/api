@@ -34,26 +34,16 @@ class AuthController extends Controller
         //
         // Prepare the validators
         //
-        if ($field == 'email')
-        {
-            $this->validate($request, [
-                'identity' => 'required|email|exists:users,email|min:5|max:100',
-                'password' => 'required|string|min:5|max:100',
-            ]);
-        }
-        else
-        {
-            $this->validate($request, [
-                'identity' => 'required|regex:@\+\d{8,15}@|exists:users,phone|min:5|max:100',
-                'password' => 'required|string|min:5|max:100',
-            ]);
-        }
+        $this->validate($request, [
+            'identity' => 'required|exists:users,'.$field.'|min:5|max:100',
+            'password' => 'required|string|min:5|max:100',
+        ]);
 
         try {
 
             $attempt = array(
-                $field => $request->input('identity'), 
-                'password' => $request->input('password')
+                $field      => $request->input('identity'), 
+                'password'  => $request->input('password')
             );
 
             if (! $token = $this->jwt->attempt($attempt)) 
@@ -124,7 +114,7 @@ class AuthController extends Controller
                 $user->password = app('hash')->make($auth_code);
                 $user->save();
 
-                return response()->json(['message' => 'Password has been reset'], 200);
+                return response()->json($user);
             }
             return response()->json(['message' => 'Message Not Sent. Try again.'], 500);
         }
@@ -136,7 +126,7 @@ class AuthController extends Controller
                 $user->password = app('hash')->make($auth_code);
                 $user->save();
 
-                return response()->json(['message' => 'Password has been reset'], 200);
+                return response()->json($user);
             }
             return response()->json(['message' => 'Message Not Sent. Try again.'], 500);
         }
@@ -170,6 +160,36 @@ class AuthController extends Controller
         }
     }
 
+    /**
+     * Assign user a new role
+     *
+     * @param   string  identity (Email or Phone)
+     * @param   string  role 
+     * @return  object
+     */
+    public function role(Request $request)
+    {
+        if (Auth::user()->can('assign_roles', Auth::user()))
+        {
+            // 
+            // Check if entered identity is email or phone
+            //
+            $field = filter_var($request->input('identity'), FILTER_VALIDATE_EMAIL) ? 'email' : 'phone';
+            //
+            // Prepare the validators
+            //
+            $this->validate($request, [
+                'identity'  => 'required|exists:users,'.$field,
+                'role'      => 'required|in:Admin,Member,Merchant,Provider|min:5|max:10',
+            ]);
 
+            $user = \App\User::where($field, $request->identity)->first();
+            $user->role = $request->role;
+            $user->save();
+            
+            return response()->json($user);
+        }
+        return response()->json(['message' => 'Forbidden'], 403);
+    }
     
 }

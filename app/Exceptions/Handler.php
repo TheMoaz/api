@@ -49,6 +49,14 @@ class Handler extends ExceptionHandler
         {
             return response()->json(['message' => 'Method Not Allowed'], 405);
         }
+        // if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)
+        // {
+        //     return response()->json(['message' => 'Not Found'], 404);
+        // }
+        // if ($e instanceof \Symfony\Component\HttpKernel\Exception\HttpException)
+        // {
+        //     return response()->json(['message' => 'Error'], 500);
+        // }
         return parent::render($request, $e);
     }
 }

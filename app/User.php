@@ -80,9 +80,9 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
         return $query->where('role', 'Member'); 
     }
 
-    public function scopeMerchants($query)
+    public function scopeMerchants($query, $provider)
     {
-        return $query->where('role', 'Merchant'); 
+        return $query->where('role', 'Merchant')->where('provider', $provider->name); 
     }
 
     public function scopeProviders($query)

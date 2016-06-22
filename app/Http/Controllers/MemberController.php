@@ -5,11 +5,16 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use App\User;
-use App\Profile;
+//use App\Profile;
 use Illuminate\Http\Request;
 
-class UserController extends Controller
+class MemberController extends Controller
 {
+    //
+    // Define per page limit
+    //
+    private $limit;
+
     /**
      * Create a new controller instance.
      *
@@ -18,27 +23,32 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth:api');
+        $this->limit = env('PER_PAGE', 10);
     }
 
     /**
-     * List all users - limited to 10 for now
+     * List all users - restricted by $limit
      *
      * @return object
      */
     public function index(Request $request)
     {
-        if ($request->has('page'))
+        if (Auth::user()->can('list_all_members', Auth::user()))
         {
-            $users = User::members()->orderBy('user_id', 'desc')->skip($request->page*10)->take(10)->get();
-        }
-        else
-        {
-            $users = User::members()->orderBy('user_id', 'desc')->take(10)->get();
-        }
+            if ($request->has('page'))
+            {
+                $users = User::members()->orderBy('user_id', 'desc')->skip($request->page*$this->limit)->take($this->limit)->get();
+            }
+            else
+            {
+                $users = User::members()->orderBy('user_id', 'desc')->take($this->limit)->get();
+            }
 
-        if (count($users)) return response()->json($users);
+            if (count($users)) return response()->json($users);
 
-        return response()->json(['message'=>'Not Found'], 404);
+            return response()->json(['message'=>'Not Found'], 404);
+        }
+        return response()->json(['message'=>'Forbidden'], 403);
     }
 
     /**
@@ -49,20 +59,24 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        $user = User::members()->find($id);
+        if (Auth::user()->can('view_member', Auth::user()))
+        {
+            $user = User::members()->find($id);
 
-        if ($user) return response()->json($user);
+            if ($user) return response()->json($user);
 
-        return response()->json(['message'=>'Not Found'], 404);
+            return response()->json(['message'=>'Not Found'], 404);
+        }
+        return response()->json(['message'=>'Forbidden'], 403);
     }
 
     /**
-     * Create a new merchant (User)
+     * Create a new member
      *
      * @param  request  $request
      * @return object
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
         $this->validate($request, [
             'name'              => 'required|string|min:5|max:100',
@@ -70,7 +84,7 @@ class UserController extends Controller
             'merchant_phone'    => 'required|regex:@\+\d{8,15}@',
         ]);
 
-        $merchant = User::merchants()->where('phone', $request->merchant_phone)->first(); 
+        $merchant = User::members()->where('phone', $request->merchant_phone)->first(); 
 
         if ($merchant && $merchant->user_id === Auth::user()->user_id)
         {

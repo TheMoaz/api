@@ -23,26 +23,29 @@ $app->group(['namespace' => 'App\Http\Controllers', 'prefix' => 'auth'], functio
 	// These routes are authenticated and rate-limited
 	//
 	$app->get(	'user', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@show']);
-	$app->post(	'reset', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@reset']);
-	$app->post(	'logout', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@logout']);
+	$app->get(	'reset', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@reset']);
+	$app->get(	'logout', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@logout']);
+
+	$app->put(	'role', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@role']);
 }); 
 //
 // API routes; all authenticated and rate-limited
 //
 $app->group(['namespace' => 'App\Http\Controllers', 'middleware' => ['auth:api', 'throttle'], 'prefix' => 'v1'], function () use ($app) 
 {
-	$app->post(	'users/add',			'UserController@store');	// Submit add request
-	$app->post(	'users/{id}/verify',	'UserController@verify');	// Verify authorization code
-	$app->get(	'users/{id}/edit', 		'UserController@edit'); 	// Request edit authorization code
-	$app->post(	'users/{id}/edit', 		'UserController@update');	// Submit edit request
-	$app->get(	'users/{id}', 			'UserController@show');		// Request individual record
-	$app->get(	'users', 				'UserController@index');	// Request all records
+	$app->post(	'members/create',			'MemberController@create');		// Submit add request
+	$app->get(	'members/{id}/activity',	'MemberController@activity');	// Return user activity
+	$app->post(	'members/{id}/verify',		'MemberController@verify');		// Verify authorization code
+	$app->get(	'members/{id}/edit', 		'MemberController@edit'); 		// Request edit authorization code
+	$app->post(	'members/{id}/edit', 		'MemberController@update');		// Submit edit request
+	$app->get(	'members/{id}', 			'MemberController@show');		// Fetch individual member record
+	$app->get(	'members', 					'MemberController@index');		// Fetch all member records
 
-	$app->post(	'merchants/create',			'MerchantController@store');
+	$app->post(	'merchants/create',			'MerchantController@create');
 	$app->get(	'merchants/{id}/activity', 	'MerchantController@activity');
-	$app->put(	'merchants/{id}/edit', 		'MerchantController@update');
-	$app->get(	'merchants/{id}', 			'MerchantController@show');
-	$app->get(	'merchants', 				'MerchantController@index');
+	//$app->put(	'merchants/{id}/edit', 		'MerchantController@update');	
+	$app->get(	'merchants/{id}', 			'MerchantController@show');		
+	$app->get(	'merchants', 				'MerchantController@index');	
 
 	$app->get(	'providers', 				'ProviderController@index');
 	$app->get(	'providers/{id}', 			'ProviderController@show');

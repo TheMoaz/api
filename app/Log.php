@@ -30,6 +30,11 @@ class Log extends Model
         return $query->where('log_user', $id);
     }
 
+    public function scopeProviders($query, $id)
+    {
+        return $query->where('log_user', $id);
+    }
+
     public function scopeUsers($query, $id)
     {
         return $query->where('log_user', $id);

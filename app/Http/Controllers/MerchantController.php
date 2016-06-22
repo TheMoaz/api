@@ -7,11 +7,14 @@ use App\Log;
 use App\User;
 use App\Common;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Crypt;
 
 class MerchantController extends Controller
 {
+    //
+    // Define per page limit
+    //
     private $limit;
+
     /**
      * Create a new controller instance.
      *
@@ -19,28 +22,35 @@ class MerchantController extends Controller
      */
     public function __construct()
     {
+        $this->middleware('auth:api');
         $this->limit = env('PER_PAGE', 10);
     }
 
     /**
-     * List all users - limited to 10 for now
+     * List all merchants 
      *
      * @return object
      */
     public function index(Request $request)
     {
-        if ($request->has('page'))
+        if (Auth::user()->can('list_own_merchants', Auth::user()))
         {
-            $users = User::merchants()->skip($request->page*10)->take(10)->get();
-        }
-        else
-        {
-            $users = User::merchants()->take(10)->get();
-        }
+            if ($request->has('page') && is_numeric($request->page))
+            {
+                $users = User::merchants(Auth::user())->orderBy('created_at', 'desc')->skip($request->page*$this->limit)->take($this->limit)->get();
+            }
+            else
+            {
+                $users = User::merchants(Auth::user())->orderBy('created_at', 'desc')->take($this->limit)->get();
+            }
 
-        if (count($users)) return response()->json($users);
-
-        return response(array('message'=>'Not Found'), 404);
+            if (count($users)) 
+            {
+                return response()->json($users);
+            }
+            return response(array('message'=>'Not Found'), 404);
+        }
+        return response(array('message'=>'Forbidden'), 403);
     }
 
     /**
@@ -51,11 +61,18 @@ class MerchantController extends Controller
      */
     public function show($id)
     {
-        $user = User::merchants()->find($id);
+        if (Auth::user()->can('view_own_merchant', Auth::user()))
+        {
+            $user = User::merchants(Auth::user())->find($id);
 
-        if (count($user)) return response()->json($user);
+            if (count($user)) 
+            {
+                return response()->json($user);
+            }
 
-        return response(array('message'=>'Not Found'), 404);
+            return response(array('message'=>'Not Found'), 404);
+        }
+        return response(array('message'=>'Forbidden'), 403);
     }
 
     /**
@@ -64,13 +81,13 @@ class MerchantController extends Controller
      * @param  request  $request
      * @return object
      */
-    public function store(Request $request)
+    public function create(Request $request)
     {
-        if (Auth::user()->can('add_merchant', Auth::user()))
+        if (Auth::user()->can('add_new_merchant', Auth::user()))
         {
             $this->validate($request, [
                 'name'      => 'required|string|min:5|max:100', 
-                'phone'     => 'required|unique:users,phone'
+                'phone'     => 'required|regex:@\+\d{8,15}@|unique:users,phone'
             ]);
 
             //
@@ -80,24 +97,23 @@ class MerchantController extends Controller
 
             try
             {
-                $user = User::create([
+                $merchant = User::create([
                     'name'          => $request->name,
                     'phone'         => \App\Libraries\Common::format_phone($request->phone), 
-                    'provider'      => Auth::user()->provider,
+                    'provider'      => Auth::user()->name,
                     'role'          => 'Merchant',
                     'active'        => 1, 
                     'confirm_code'  => $auth_code, 
                     'password'      => app('hash')->make($auth_code),
                 ]);
-
                 //
                 // Send SMS to phone number
                 //
                 $message = 'Welcome to SkillBazaar. Please use the following code to login to your account: ' . $auth_code; 
 
-                if (\App\Libraries\Common::sendSMS($user->phone, $message))
+                if (\App\Libraries\Common::sendSMS($merchant->phone, $message))
                 {
-                    return response()->json($user, 201);
+                    return response()->json($merchant, 201);
                 }
                 return response()->json(['message' => 'Error sending SMS.'], 500);
             }
@@ -115,28 +131,28 @@ class MerchantController extends Controller
      * @param  request  $request
      * @return object
      */
-    public function verify(Request $request)
-    {
-        $this->validate($request, [
-            'id'        => 'required|integer|exists:users,user_id,active,0',
-            'code'      => 'required|regex:@\d{6}@', 
-        ]); 
+    // public function verify(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'id'        => 'required|integer|exists:users,user_id,active,0',
+    //         'code'      => 'required|regex:@\d{6}@', 
+    //     ]); 
 
-        $user = User::merchants()->where('user_id', $request->id)->where('confirm_code', $request->code)->first();
+    //     $user = User::merchants()->where('user_id', $request->id)->where('confirm_code', $request->code)->first();
 
-        if ($user)
-        {
-            $user->active = 1;
-            $user->confirm_code = null;
-            $user->save();
-            return response()->json($user); 
-        }
+    //     if ($user)
+    //     {
+    //         $user->active = 1;
+    //         $user->confirm_code = null;
+    //         $user->save();
+    //         return response()->json($user); 
+    //     }
 
-        return response(array('message'=>'Not Found'), 404);
-    }
+    //     return response(array('message'=>'Not Found'), 404);
+    // }
 
     /**
-     * Update an existing merchant (User)
+     * Update an existing merchant
      *
      * @param  request  $request
      * @param  integer  $id
@@ -144,14 +160,17 @@ class MerchantController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::merchants()->find($id);
+        $merchant = User::merchants(Auth::user())->find($id);
 
-        if ($user) 
+        if ($merchant)
         {
-            $user->update($request->all());
-            return response()->json($user);
+            if (Auth::user()->can('edit_own_merchant', $merchant))
+            {
+                $merchant->update($request->all());
+                return response()->json($merchant);
+            }
+            return response(array('message'=>'Forbidden'), 403);
         }
-
         return response(array('message'=>'Not Found'), 404);
     }
 
@@ -164,22 +183,20 @@ class MerchantController extends Controller
      */
     public function activity(Request $request, $id)
     {
-        $user = User::merchants()->find($id);
+        $merchant = User::merchants(Auth::user())->find($id);
 
-        if ($user)
+        if ($merchant)
         {
-            if (Auth::user()->can('view_merchant_logs', $user)) 
+            if (Auth::user()->can('view_own_merchant_log', $merchant)) 
             {
-                if ($request->has('page')) 
+                if ($request->has('page') && is_numeric($request->page)) 
                 {
-                    return Log::merchants($id)->skip($request->page*$this->limit)->take($this->limit)->orderBy('created_at', 'desc')->get();
+                    return Log::merchants($id)->orderBy('created_at', 'desc')->skip($request->page*$this->limit)->take($this->limit)->get();
                 }
-                return Log::merchants($id)->take($this->limit)->orderBy('created_at', 'desc')->get();
+                return Log::merchants($id)->orderBy('created_at', 'desc')->take($this->limit)->get();
             }
-
             return response()->json(['message' => 'Forbidden'], 403);
         }
-
         return response()->json(['message' => 'Not Found'], 404);
     }
 }
