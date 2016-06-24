@@ -47,12 +47,12 @@ class Handler extends ExceptionHandler
     {
         if ($e instanceof \Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException)
         {
-            return response()->json(['message' => 'Method Not Allowed'], 405);
+            return response()->json(['message' => 'Method Not Allowed', 'documentation' => 'https://developer.skillbazaar.co/api'], 405);
         }
-        // if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)
-        // {
-        //     return response()->json(['message' => 'Not Found'], 404);
-        // }
+        if ($e instanceof \Symfony\Component\HttpKernel\Exception\NotFoundHttpException)
+        {
+            return response()->json(['message' => 'Not Found', 'documentation' => 'https://developer.skillbazaar.co/api'], 404);
+        }
         // if ($e instanceof \Symfony\Component\HttpKernel\Exception\HttpException)
         // {
         //     return response()->json(['message' => 'Error'], 500);

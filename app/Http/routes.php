@@ -26,7 +26,7 @@ $app->group(['namespace' => 'App\Http\Controllers', 'prefix' => 'auth'], functio
 	$app->get(	'reset', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@reset']);
 	$app->get(	'logout', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@logout']);
 
-	$app->put(	'role', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@role']);
+	//$app->put(	'role', 	['middleware' => ['auth:api', 'throttle'], 'uses' => 'AuthController@role']);
 }); 
 //
 // API routes; all authenticated and rate-limited
@@ -36,8 +36,8 @@ $app->group(['namespace' => 'App\Http\Controllers', 'middleware' => ['auth:api',
 	$app->post(	'members/create',			'MemberController@create');		// Submit add request
 	$app->get(	'members/{id}/activity',	'MemberController@activity');	// Return user activity
 	$app->post(	'members/{id}/verify',		'MemberController@verify');		// Verify authorization code
-	$app->get(	'members/{id}/edit', 		'MemberController@edit'); 		// Request edit authorization code
-	$app->post(	'members/{id}/edit', 		'MemberController@update');		// Submit edit request
+	$app->get(	'members/{id}/authorize', 	'MemberController@authorize'); 	// Request edit authorization code
+	$app->post(	'members/{id}/edit', 		'MemberController@edit');		// Submit edit request
 	$app->get(	'members/{id}', 			'MemberController@show');		// Fetch individual member record
 	$app->get(	'members', 					'MemberController@index');		// Fetch all member records
 

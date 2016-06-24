@@ -27,7 +27,7 @@ class MerchantController extends Controller
     }
 
     /**
-     * List all merchants 
+     * List own merchants 
      *
      * @return object
      */
