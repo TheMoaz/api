@@ -25,6 +25,7 @@ return array(
     'Namshi\\JOSE\\' => array($vendorDir . '/namshi/jose/src/Namshi/JOSE'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
     'Laravel\\Lumen\\' => array($vendorDir . '/laravel/lumen-framework/src'),
+    'Intervention\\Image\\' => array($vendorDir . '/intervention/image/src/Intervention/Image'),
     'Illuminate\\View\\' => array($vendorDir . '/illuminate/view'),
     'Illuminate\\Validation\\' => array($vendorDir . '/illuminate/validation'),
     'Illuminate\\Translation\\' => array($vendorDir . '/illuminate/translation'),

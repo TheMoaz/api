@@ -85,6 +85,7 @@ $app->routeMiddleware([
 $app->register(App\Providers\AppServiceProvider::class);
 $app->register(App\Providers\AuthServiceProvider::class);
 $app->register(GrahamCampbell\Throttle\ThrottleServiceProvider::class);
+$app->register(Intervention\Image\ImageServiceProvider::class);
 // $app->register(App\Providers\EventServiceProvider::class);
 $app->register(Illuminate\Mail\MailServiceProvider::class);  
 $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
@@ -93,6 +94,7 @@ $app->register(Tymon\JWTAuth\Providers\LumenServiceProvider::class);
 // $app->register(Jenssegers\Agent\AgentServiceProvider::class);
 // class_alias('Jenssegers\Agent\AgentServiceProvider', 'Agent');
 // class_alias('GrahamCampbell\Throttle\Facades\Throttle' => 'Throttle');
+class_alias('Intervention\Image\Facades\Image', 'Image');
 
 $app->configure('mail');
 $app->configure('services');

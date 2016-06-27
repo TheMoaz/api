@@ -14,6 +14,13 @@ class Profile extends Model
     protected $primaryKey = 'user_id';
 
     /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $hidden = ['video', 'step', 'added_by']; 
+
+    /**
      * The attributes that are mass assignable.
      *
      * @var array

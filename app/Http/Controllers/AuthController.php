@@ -43,7 +43,7 @@ class AuthController extends Controller
 
             $attempt = array(
                 $field      => $request->input('identity'), 
-                'password'  => $request->input('password')
+                'password'  => $request->input('password'),
             );
 
             if (! $token = $this->jwt->attempt($attempt)) 

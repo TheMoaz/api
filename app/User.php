@@ -44,7 +44,6 @@ class User extends Model implements JWTSubject, AuthenticatableContract, Authori
         return [];
     }
 
-
     public function profile()
     {
         return $this->hasOne('App\Profile');

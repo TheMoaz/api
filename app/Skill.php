@@ -13,6 +13,20 @@ class Skill extends Model
      */
     protected $primaryKey = 'skill_id';
 
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    protected $fillable = ['skill_name','added_by']; 
+
+    /**
+     * The attributes excluded from the model's JSON form.
+     *
+     * @var array
+     */
+    //protected $hidden = ['added_by', 'yeas', 'nays', 'created_at', 'updated_at']; 
+
     public function user()
     {
         return $this->belongsTo('App\User', 'added_by', 'user_id');
@@ -20,12 +34,12 @@ class Skill extends Model
 
     public function scopeActive($query)
     {
-        return $query->where('active', 1);
+        return $query->where('skills.active', 1);
     }
 
     public function scopeProposed($query)
     {
-        return $query->where('active', 0);
+        return $query->where('skills.active', 0);
     }
 
     public function scopeUsed($query)

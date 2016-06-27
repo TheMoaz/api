@@ -3,9 +3,23 @@
 namespace App\Policies;
 
 use App\User;
+use App\Skill;
 
 class UserPolicy
 {
+    //
+    // Check for Administrators
+    //
+    public function before($user)
+    {
+        if ($user->role === 'Admin') return true;
+    }
+    
+    public function search_members(User $user)
+    {
+        //return  in_array($user->role, ['Admin', 'Provider', 'Merchant', 'Member'], true);
+        return true;
+    }
 
     public function assign_roles(User $user)
     {
@@ -25,7 +39,7 @@ class UserPolicy
     //
     // List all members
     //
-    public function list_members(User $user)
+    public function list_all_members(User $user)
     {
         return  in_array($user->role, ['Admin'], true);
     }
@@ -119,5 +133,29 @@ class UserPolicy
                 (
                     ($user->role === 'Provider') && ($user->user_id === $provider->user_id)
                 );
+    }
+
+
+
+    //
+    // Get member skills
+    //
+    public function get_skills(User $user)
+    {
+        return  in_array($user->role, ['Merchant'], true);
+    }
+    //
+    // Set member skills
+    //
+    public function set_skills(User $user)
+    {
+        return  in_array($user->role, ['Merchant'], true);
+    }
+    //
+    // Set member skills
+    //
+    public function del_skills(User $user)
+    {
+        return  in_array($user->role, ['Merchant'], true);
     }
 }

@@ -2,9 +2,11 @@
 
 namespace App\Libraries;
 
+use Image;
 use Services_Twilio;
 use Services_Twilio_RestException;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Http\Request;
 
 class Common
 {
@@ -53,6 +55,7 @@ class Common
             return $e->getMessage();
         }
     }
+    
     /**
      * Used to send email to specific user
      */
@@ -63,5 +66,45 @@ class Common
             $message->to($user->email, $user->name);
             $message->subject($subject);
         });
+    }
+
+    /**
+     * Upload photo/video
+     * 
+     * @return  boolean
+     */
+    public static function upload(Request $request)
+    {
+        if ($request->hasFile('photo'))
+        {
+            if ($request->file('photo')->isValid())
+            {
+                $path   = 'avatars';                                                // define the upload path
+                $ext    = $request->file('photo')->getClientOriginalExtension();    // get original image extension
+                $name   = uniqid();                                                 // generate a unique id
+                $file   = $name.'.'.$ext;                                           // rename the image
+                
+                $request->file('photo')->move($path, $file);                        // upload file to given path
+
+                $img    = Image::make($path.'/'.$file);                             // load image into memory 
+                $img->fit(350, 350);                                                // crop image to fit dimensions
+                $img->encode('jpg', 80)->save($path.'/'.$name.'.jpg');              // encode image into jpeg format
+
+                return $name.'.jpg';                                                // return filename for saving
+            }
+            return false;
+        }
+        elseif ($request->hasFile('video'))
+        {
+            $path   = 'videos';                                                 // define the upload path
+            $ext    = $request->file('video')->getClientOriginalExtension();    // get original video extension
+            $name   = uniqid();                                                 // generate a unique id
+            $file   = $name.'.'.$ext;                                           // rename the image
+            
+            $request->file('video')->move($path, $file);                        // upload file to given path
+
+            return $file;                                                       // return filename for saving
+        }
+        return false;
     }
 }

@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\User;
+use Illuminate\Http\Request;
+
 class HomeController extends Controller
 {
     /**
@@ -35,4 +38,20 @@ class HomeController extends Controller
         return response()->json($functions);
     }
 
+    public function upload(Request $request)
+    {
+        $this->validate($request, [
+            'photo' => 'required_without:video|mimetypes:image/jpeg,image/gif,image/png',
+            'video' => 'required_without:photo|mimetypes:video/mpeg,video/quicktime,video/mp4,video/webm,video/x-ms-wmv',
+        ]);
+
+        $response = \App\Libraries\Common::upload($request);
+
+        if ($response)
+        {
+            return response()->json($response, 201);
+        }
+        
+        return response()->json(['message' => ''], 422);
+    }
 }

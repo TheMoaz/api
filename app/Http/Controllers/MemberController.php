@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use DB;
 use Auth;
 use App\User;
-//use App\Profile;
+use App\Skill;
 use Illuminate\Http\Request;
 
 class MemberController extends Controller
@@ -208,5 +208,105 @@ class MemberController extends Controller
         }
 
         return response(array('message'=>'Not Found'), 404);
+    }
+    /**
+     * Get a single member's skills
+     * 
+     * @param   integer     id
+     * @return  array
+     */
+    public function getSkills(Request $request, int $id)
+    {
+        if (Auth::user()->can('get_skills', Auth::user()))
+        {
+            $user = User::with('skills')->members()->find($id);
+
+            if ($user)
+            {
+                $skills = array();
+                foreach ($user->skills as $skill)
+                {
+                    array_push($skills, array('skill_id' => $skill->skill_id, 'skill_name' => $skill->skill_name));
+                }
+                return response()->json($skills, 200);
+            }
+            return response(array('message'=>'Not Found'), 404);
+        }
+        return response(array('message'=>'Forbidden'), 403);
+    }
+    /**
+     * Assign new skill to a member
+     * 
+     * @param   integer     id
+     * @param   integer     skill
+     * @return  array
+     */
+    public function putSkill(Request $request, int $id)
+    {
+        if (Auth::user()->can('set_skills', Auth::user()))
+        {
+            //
+            // Validate the request; make sure skill exists in the system
+            //
+            $this->validate($request, [
+                'skill_id' => 'required|integer|exists:skills,skill_id',
+            ]);
+            //
+            // Fetch the required user along with skills
+            //
+            $user   = User::with('skills')->members()->find($id);
+            //
+            // Return existing user object if skill already exists
+            // 
+            if ($user->skills()->where('skills.skill_id', $request->skill_id)->count())
+            {
+                return response()->json($user->skills, 200);
+            }
+            //
+            // Fetch the new skill
+            //
+            $skill  = Skill::find($request->skill_id);
+            //
+            // Attach if both user and skill exist
+            // 
+            if ($user && $skill)
+            {
+                $user->skills()->attach($skill);
+                $user->load('skills');
+
+                return response()->json($user->skills, 200);
+            }
+            return response(array('message'=>'Not Found'), 404);
+        }
+        return response(array('message'=>'Forbidden'), 403);
+    }
+    /**
+     * Unassign a skill from a member
+     * 
+     * @param   integer     id
+     * @param   integer     skill
+     * @return  array
+     */
+    public function delSkill(Request $request, int $id)
+    {
+        if (Auth::user()->can('del_skills', Auth::user()))
+        {
+            $this->validate($request, [
+                'skill_id' => 'required|integer|exists:skills,skill_id',
+            ]);
+
+            $user   = User::with('skills')->members()->find($id);
+            $skill  = Skill::find($request->skill_id);
+
+            if ($user && $skill)
+            {
+                $user->skills()->detach($skill);
+                $user->load('skills');
+
+                return response()->json($user->skills, 200);
+            }
+            return response(array('message'=>'Not Found'), 404);
+        }
+        return response(array('message'=>'Forbidden'), 403);
     }
 }
